@@ -1,3 +1,7 @@
+## [v0.1.4a] - 2025-08-25
+### Changed
+- README.md 더자세하게, 친절한 설명 추가.
+- Added english, chinese README
 
 ## [v0.1.3] - 2025-08-25
 ### Changed

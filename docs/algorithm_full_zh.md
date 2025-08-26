@@ -69,5 +69,7 @@ state:
 
 ---
 ## 7) 图示
-- `diagrams/ue8m0_overview_auto_zh.svg`  
+- `diagrams/ue8m0_overview_auto_zh.svg` 
+  [ue8m0_overview](diagrams/ue8m0_overview_auto_zh.svg) 
 - `diagrams/ue8m0_sync_auto_vertical_zh.svg`
+  [ue8m0_sync_auto](diagrams/ue8mue8m0_sync_auto_vertical_zh.svg)
