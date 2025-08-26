@@ -127,3 +127,6 @@ for each sample x at time now with step Δt:
    [ue8m0_sync_auto](diagrams/ue8mue8m0_sync_auto_vertical.svg)
 
 > 모든 다이어그램은 **소스 덤프**(JSON 레이아웃 & DOT)와 함께 제공합니다.
+
+## 8) 인코더 디코더 예제
+- [Encoder/Decoder 예제](encdec_example.md)
