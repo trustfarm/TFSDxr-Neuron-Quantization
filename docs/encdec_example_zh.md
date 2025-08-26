@@ -35,8 +35,8 @@
 
 ## 6) SVG 示例图
 
-- 📈 [输入 vs 重建时序](diagram/encdec_timeseries.svg)  
-- 🪙 [令牌时间线](diagram/encdec_tokens.svg)
+- 📈 [输入 vs 重建时序](diagrams/encdec_timeseries.svg)  
+- 🪙 [令牌时间线](diagrams/encdec_tokens.svg)
 
 ---
 

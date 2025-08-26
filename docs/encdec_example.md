@@ -35,8 +35,8 @@
 
 ## 6) SVG 샘플 플롯
 
-- 📈 [입력 vs 복원 시계열](diagram/encdec_timeseries.svg)  
-- 🪙 [토큰 타임라인](diagram/encdec_tokens.svg)
+- 📈 [입력 vs 복원 시계열](diagrams/encdec_timeseries.svg)  
+- 🪙 [토큰 타임라인](diagrams/encdec_tokens.svg)
 
 ---
 
