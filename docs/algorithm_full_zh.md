@@ -72,7 +72,7 @@ state:
 - `diagrams/ue8m0_overview_auto_zh.svg` 
   [ue8m0_overview](diagrams/ue8m0_overview_auto_zh.svg) 
 - `diagrams/ue8m0_sync_auto_vertical_zh.svg`
-  [ue8m0_sync_auto](diagrams/ue8mue8m0_sync_auto_vertical_zh.svg)
+  [ue8m0_sync_auto](diagrams/ue8m0_sync_auto_vertical_zh.svg)
 
 ## 8) 编码器–解码器示例
 - [编码器/解码器 示例](encdec_example_zh.md)
