@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+title: "UE8M0-Human-Neuron-Quantization algorithm"
+authors:
+  - "Ahn Kyu-Tae"
+  - nick-names : "trustfarm"
+  - email: "cpplover@trustfarm.net"
+helper/staffs :
+  - G5 (G-O) Bujang
+date-released: 2025-08-26
+version: "0.1.4"
+license: Apache-2.0 , Freely used in personal, researcher , But commercially, permit by author
+repository-code: "https://github.com/trustfarm/UE8M0-Neuron-Quant"
+abstract: |
+  Power-of-two scaling (UE8M0) with differential and sigma-delta style encoding for
+  neural-inspired low-power digital processing. Combines FP8 (E4M3/E5M2) elements with
+  block-wise UE8M0 scaling, event tokens (SILENT/MAX/MIN), and adaptive range control.

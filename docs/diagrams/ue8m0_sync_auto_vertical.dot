@@ -1,0 +1,30 @@
+digraph UE8M0_SYNC_AUTO_VERTICAL {
+  graph  [rankdir=TB, bgcolor="#F9F9F9", nodesep=0.9, ranksep=1.1, fontname="Helvetica", overlap=false];
+  node   [shape=box, style="rounded,filled", fillcolor="#EAF3FF", color="#2C6EBB",
+          penwidth=1.4, fontname="Helvetica", fontsize=13, margin="0.10,0.06"];
+  edge   [color="#333333", arrowsize=0.8, penwidth=1.3, fontname="Helvetica", fontsize=11];
+
+  subgraph cluster_enc {
+    label="인코더"; style="filled,rounded"; color="#E6E6E6"; fontcolor="#444";
+    e_in [label="입력 x"];
+    e_b  [label="b(EMA)"];
+    e_d  [label="d = x - b"];
+    e_q  [label="FP8 양자화"];
+    e_E  [label="E(UE8M0)"];
+  }
+  subgraph cluster_tok {
+    label="토큰 스트림"; style="rounded"; color="#DDDDDD"; fontcolor="#444";
+    tok [label="토큰: NORM / MAX / MIN / SCALE"];
+  }
+  subgraph cluster_dec {
+    label="디코더"; style="filled,rounded"; color="#E6E6E6"; fontcolor="#444";
+    d_E [label="E 동기화"]; d_q [label="deFP8(q)"];
+    d_rec [label="재구성 d̂ = deFP8(q) · 2^E"]; d_b [label="b(EMA)"];
+    d_out [label="복원 x̂ = b + d̂"];
+  }
+
+  e_in -> e_d; e_b -> e_d; e_d -> e_q; e_E -> e_q [label="스케일 적용"];
+  e_q -> tok [label="NORM"]; e_E -> tok [label="SCALE"];
+  tok -> d_q [label="NORM/MAX/MIN"]; tok -> d_E [label="SCALE"];
+  d_q -> d_rec; d_E -> d_rec; d_b -> d_out; d_rec -> d_out;
+}

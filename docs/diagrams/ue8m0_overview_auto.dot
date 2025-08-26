@@ -1,0 +1,70 @@
+digraph UE8M0_OVERVIEW_AUTO {
+  graph  [rankdir=TB, bgcolor="#F9F9F9", nodesep=0.7, ranksep=1.0, fontname="Helvetica", overlap=false];
+  node   [shape=box, style="rounded,filled", fillcolor="#EAF3FF", color="#2C6EBB",
+          penwidth=1.4, fontname="Helvetica", fontsize=13, margin="0.10,0.06"];
+  edge   [color="#333333", arrowsize=0.8, penwidth=1.3, fontname="Helvetica", fontsize=11];
+
+  subgraph cluster_main {
+    label="UE8M0 시간 흐름"; style="filled,rounded"; color="#E6E6E6"; fontcolor="#444";
+    start [label="시작"];
+    inb   [label="입력 x 와\n기준 b", shape=plain, fontcolor="#000000"];
+    diff  [label="차분 d = x - b"];
+    refrQ [label="불응기? (now < t_event_quiet)", shape=diamond, fillcolor="#FFD699", color="#FF9900"];
+    bupd  [label="기준 b 업데이트 (EMA)"];
+    smallQ [label="작은가? (|d| < λ0·2^E)", shape=diamond, fillcolor="#FFD699", color="#FF9900"];
+    largeQ [label="큰가? (|d| > λhi·2^E)", shape=diamond, fillcolor="#FFD699", color="#FF9900"];
+    qnorm [label="일반 양자화"];
+    emitn [label="NORM(q) 발화"];
+    bupd2 [label="기준 b 업데이트 (EMA)"];
+    scQ   [label="스케일 적응 조건\n(체류시간 & near)", shape=diamond, fillcolor="#FFD699", color="#FF9900"];
+    scDo  [label="SCALE(±1) 발화"];
+  }
+
+  subgraph cluster_small {
+    label="작은 차분 (ΣΔ)"; style="filled,rounded"; color="#CFE9FF"; fontcolor="#444";
+    sigma [label="ΣΔ 누산기 (r += d·Δt)"];
+    emitQ [label="발화 조건 충족?", shape=diamond, fillcolor="#FFD699", color="#FF9900"];
+    pulse [label="±1 펄스 발화"];
+  }
+
+  subgraph cluster_large {
+    label="큰 차분 (MAX/MIN)"; style="filled,rounded"; color="#FFE6CC"; fontcolor="#444";
+    maxmin [label="MAX / MIN 발화"];
+  }
+
+  subgraph cluster_scale {
+    label="스케일 적용"; style="filled,rounded"; color="#DFF7E7"; fontcolor="#444";
+    dwell [label="스케일 체류시간", shape=diamond, fillcolor="#FFD699", color="#FF9900"];
+    adapt [label="스케일 적용 (±1)"];
+  }
+
+  start -> inb -> diff -> refrQ;
+  refrQ -> bupd   [label="예"];
+  refrQ -> smallQ [label="아니오"];
+
+  bupd  -> diff   [label="루프", style=dashed, color="#999999"];
+
+  smallQ -> sigma  [label="예"];
+  smallQ -> largeQ [label="아니오"];
+
+  largeQ -> maxmin [label="예"];
+  largeQ -> qnorm  [label="아니오"];
+
+  qnorm -> emitn -> bupd2;
+
+  sigma -> emitQ;
+  emitQ -> pulse  [label="예"];
+  emitQ -> bupd2  [label="아니오"];
+  pulse -> bupd2;
+
+  maxmin -> bupd2;
+
+  bupd2 -> diff   [label="루프"];
+  emitn -> scQ;
+  scQ   -> scDo   [label="예"];
+  scDo  -> diff   [label="루프"];
+  scQ   -> diff   [label="아니오", style=dashed, color="#999999"];
+
+  dwell -> adapt  [label="예"];
+  adapt -> scDo   [label="루프"];
+}

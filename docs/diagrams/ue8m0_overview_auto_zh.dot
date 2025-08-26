@@ -1,0 +1,80 @@
+// File: ue8m0_overview_auto_zh.dot
+digraph UE8M0_OVERVIEW_AUTO_ZH {
+  graph  [rankdir=TB, bgcolor="#F9F9F9", nodesep=0.7, ranksep=1.0, fontname="Helvetica", overlap=false];
+  node   [shape=box, style="rounded,filled", fillcolor="#EAF3FF", color="#2C6EBB",
+          penwidth=1.4, fontname="Helvetica", fontsize=13, margin="0.10,0.06"];
+  edge   [color="#333333", arrowsize=0.8, penwidth=1.3, fontname="Helvetica", fontsize=11];
+
+  // —— 主流程面板 ——
+  subgraph cluster_main {
+    label="UE8M0 时间流程"; style="filled,rounded"; color="#E6E6E6"; fontcolor="#444";
+    start [label="开始"];
+    inb   [label="输入 x 与\n基线 b", shape=plain, fontcolor="#000000"];
+    diff  [label="差分 d = x - b"];
+    refrQ [label="不应期？(now < t_event_quiet)", shape=diamond, fillcolor="#FFD699", color="#FF9900"];
+    bupd  [label="基线 b 更新 (EMA)"];
+    smallQ [label="是否小？(|d| < λ0·2^E)", shape=diamond, fillcolor="#FFD699", color="#FF9900"];
+    largeQ [label="是否大？(|d| > λhi·2^E)", shape=diamond, fillcolor="#FFD699", color="#FF9900"];
+    qnorm [label="常规量化"];
+    emitn [label="NORM(q) 发放"];
+    bupd2 [label="基线 b 更新 (EMA)"];
+    scQ   [label="尺度适应条件\n(驻留时间 &  邻近 near)", shape=diamond, fillcolor="#FFD699", color="#FF9900"];
+    scDo  [label="尺度应用 (±1) 发放"];
+  }
+
+  // —— 小差分(ΣΔ) 面板 ——
+  subgraph cluster_small {
+    label="小差分 (ΣΔ)"; style="filled,rounded"; color="#CFE9FF"; fontcolor="#444";
+    sigma [label="ΣΔ 累加器 (r += d·Δt)"];
+    emitQ [label="满足发放条件？", shape=diamond, fillcolor="#FFD699", color="#FF9900"];
+    pulse [label="±1 脉冲发放"];
+  }
+
+  // —— 大差分(MAX/MIN) 面板 ——
+  subgraph cluster_large {
+    label="大差分 (MAX/MIN)"; style="filled,rounded"; color="#FFE6CC"; fontcolor="#444";
+    maxmin [label="MAX / MIN 发放"];
+  }
+
+  // —— 尺度应用 面板 —…
+  subgraph cluster_scale {
+    label="尺度应用"; style="filled,rounded"; color="#DFF7E7"; fontcolor="#444";
+    dwell [label="尺度驻留时间", shape=diamond, fillcolor="#FFD699", color="#FF9900"];
+    adapt [label="尺度应用 (±1)"];
+  }
+
+  // —— 主流程连线（让 Graphviz 自选线型/路径） ——
+  start -> inb -> diff -> refrQ;
+  refrQ -> bupd   [label="是"];
+  refrQ -> smallQ [label="否"];
+
+  bupd  -> diff   [label="循环", style=dashed, color="#999999"];
+
+  smallQ -> sigma  [label="是"];
+  smallQ -> largeQ [label="否"];
+
+  largeQ -> maxmin [label="是"];
+  largeQ -> qnorm  [label="否"];
+
+  qnorm -> emitn -> bupd2;
+
+  // ΣΔ 支路
+  sigma -> emitQ;
+  emitQ -> pulse  [label="是"];
+  emitQ -> bupd2  [label="否"];
+  pulse -> bupd2;
+
+  // MAX/MIN 支路
+  maxmin -> bupd2;
+
+  // 末端循环与尺度路径
+  bupd2 -> diff   [label="循环"];
+  emitn -> scQ;
+  scQ   -> scDo   [label="是"];
+  scDo  -> diff   [label="循环"];
+  scQ   -> diff   [label="否", style=dashed, color="#999999"];
+
+  // 可选：驻留→应用（视觉参考）
+  dwell -> adapt  [label="是"];
+  adapt -> scDo   [label="循环"];
+}

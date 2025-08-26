@@ -1,0 +1,70 @@
+digraph UE8M0_OVERVIEW_AUTO_EN {
+  graph  [rankdir=TB, bgcolor="#F9F9F9", nodesep=0.7, ranksep=1.0, fontname="Helvetica", overlap=false];
+  node   [shape=box, style="rounded,filled", fillcolor="#EAF3FF", color="#2C6EBB",
+          penwidth=1.4, fontname="Helvetica", fontsize=13, margin="0.10,0.06"];
+  edge   [color="#333333", arrowsize=0.8, penwidth=1.3, fontname="Helvetica", fontsize=11];
+
+  subgraph cluster_main {
+    label="UE8M0 Flow"; style="filled,rounded"; color="#E6E6E6"; fontcolor="#444";
+    start [label="Start"];
+    inb   [label="Input x and\nBaseline b", shape=plain, fontcolor="#000000"];
+    diff  [label="Difference d = x - b"];
+    refrQ [label="Refractory? (now < t_event_quiet)", shape=diamond, fillcolor="#FFD699", color="#FF9900"];
+    bupd  [label="Update baseline b (EMA)"];
+    smallQ [label="Small? (|d| < lambda0·2^E)", shape=diamond, fillcolor="#FFD699", color="#FF9900"];
+    largeQ [label="Large? (|d| > lambda_hi·2^E)", shape=diamond, fillcolor="#FFD699", color="#FF9900"];
+    qnorm [label="Normal quantization"];
+    emitn [label="Emit NORM(q)"];
+    bupd2 [label="Update baseline b (EMA)"];
+    scQ   [label="Scale-adapt condition\n(dwell time & near)", shape=diamond, fillcolor="#FFD699", color="#FF9900"];
+    scDo  [label="Emit SCALE (±1)"];
+  }
+
+  subgraph cluster_small {
+    label="Small difference (ΣΔ)"; style="filled,rounded"; color="#CFE9FF"; fontcolor="#444";
+    sigma [label="ΣΔ accumulator (r += d·Δt)"];
+    emitQ [label="Fire condition met?", shape=diamond, fillcolor="#FFD699", color="#FF9900"];
+    pulse [label="Emit ±1 pulse"];
+  }
+
+  subgraph cluster_large {
+    label="Large difference (MAX/MIN)"; style="filled,rounded"; color="#FFE6CC"; fontcolor="#444";
+    maxmin [label="Emit MAX / MIN"];
+  }
+
+  subgraph cluster_scale {
+    label="Scale application"; style="filled,rounded"; color="#DFF7E7"; fontcolor="#444";
+    dwell [label="Scale dwell time", shape=diamond, fillcolor="#FFD699", color="#FF9900"];
+    adapt [label="Emit scale (±1)"];
+  }
+
+  start -> inb -> diff -> refrQ;
+  refrQ -> bupd   [label="Yes"];
+  refrQ -> smallQ [label="No"];
+
+  bupd  -> diff   [label="Loop", style=dashed, color="#999999"];
+
+  smallQ -> sigma  [label="Yes"];
+  smallQ -> largeQ [label="No"];
+
+  largeQ -> maxmin [label="Yes"];
+  largeQ -> qnorm  [label="No"];
+
+  qnorm -> emitn -> bupd2;
+
+  sigma -> emitQ;
+  emitQ -> pulse  [label="Yes"];
+  emitQ -> bupd2  [label="No"];
+  pulse -> bupd2;
+
+  maxmin -> bupd2;
+
+  bupd2 -> diff   [label="Loop"];
+  emitn -> scQ;
+  scQ   -> scDo   [label="Yes"];
+  scDo  -> diff   [label="Loop"];
+  scQ   -> diff   [label="No", style=dashed, color="#999999"];
+
+  dwell -> adapt  [label="Yes"];
+  adapt -> scDo   [label="Loop"];
+}
