@@ -18,6 +18,9 @@ UE4T는 **2^E 스케일**(쉬프트) + **저비트 토큰(4bit)** + **ΣΔ 이�
 
 ---
 
+### 1-1) 기본 알고리즘은 [ue4t_format_v.0.1.md](ue4t_format_v.0.1.md) 를 참고하세요.
+### 1-2) 알고리즘의 지향점과 차별화된 점은 [ue4t_v0.2 일반인이 이해하기 쉬운 설명](ue4t_v0.2_description.md) 를 참고하세요.
+
 ## 2) 토큰 맵(요약)
 - `SILENT(0x0)`, `SD±(0x1/0x2)`, `SCALE±(0x3/0x4)`, `MAX/MIN(0x5/0x6)`,  
   `BASE_TICK(0x7)`, `NORM_ESC(0x8)+payload(1 nibble)`, `RLE_ESC(0x9)+len`, `RESET(0xA)` …
