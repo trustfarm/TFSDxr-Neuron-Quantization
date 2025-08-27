@@ -7,7 +7,9 @@
 - **BASE_TICK 구체화**: 재동기화(resync) 시나리오와 구현 팁
 
 ---
-
+  -- 1st v0.1 detailed description from [guderi_and_Q&A](guderi-q_and_a-suggest.md) **Purpose of Development of This Researchs** 
+  -- get [feedback](4bits_quant/guderi_ue4t_feedback_1.md) and upgrade algorithm for more suitable to NeuroMorphic SoC , Neuron FrontEnd.
+   
 ## 1) 개요 (요약)
 UE4T는 **2^E 스케일**(쉬프트) + **저비트 토큰(4bit)** + **ΣΔ 이벤트**를 결합한 경량 부호화입니다.  
 - **Differential**: 입력에서 EMA 기반 기준 `b`를 제거 → `d = x - b`  
