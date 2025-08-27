@@ -3,7 +3,7 @@
 [KO](README.md) | [EN](README_en.md) | [ZH](README_zh.md)
 
 **UE8M0**는 *변화(차분)*·*이벤트* 중심의 저전력 양자화/부호화 스킴입니다.  
-`2^E` 스케일(쉬프트) + FP8 가수 조합으로 **乘法 없이(shift만)** 넓은 동적 범위를 다룹니다.
+`2^E` 스케일(쉬프트) + FP8 가수 조합으로 **곱셈 없이(shift만)** 넓은 동적 범위를 다룹니다.
 
 ---
 
@@ -14,6 +14,15 @@
 - Sync (vertical): KO/EN/ZH DOT → `docs/diagrams/ue8m0_sync_auto_vertical*.dot`  
 
 > Windows 변환: `docs/diagrams/dot2svg.bat` 로 `.dot → .svg`
+
+---
+
+**UE4T**는 **UE8M0 철학**을 **4비트** 포맷으로 확장한 경량 부호화 방식입니다.  
+- 2^E 스케일 (shift) + ΣΔ 이벤트 + 4bit 토큰 맵  
+- 작은 변화: ΣΔ ±1, 큰 변화: MAX/MIN, 중간: NORM_ESC+payload  
+- 곱셈기 없는 하드웨어 구현 최적화  
+
+👉 [UE4T v0.3 상세 문서](docs/ue4t_format_v.0.3.md)
 
 ---
 

@@ -14,7 +14,7 @@
 UE4T는 **2^E 스케일**(쉬프트) + **저비트 토큰(4bit)** + **ΣΔ 이벤트**를 결합한 경량 부호화입니다.  
 - **Differential**: 입력에서 EMA 기반 기준 `b`를 제거 → `d = x - b`  
 - **Event-based**: 작은 변화는 **ΣΔ 펄스(±1)**, 큰 변화는 **MAX/MIN**, 중간은 **NORM**  
-- **Shift-only**:乘法 없이 `2^E`로 스케일 → 하드웨어 효율 ↑
+- **Shift-only**:곱셈 없이 `2^E`로 스케일 → 하드웨어 효율 ↑
 
 ---
 
@@ -132,6 +132,81 @@ K 값을 변화시키며 1초 윈도우에서 ΣΔ 발화량을 측정한 예시
 - 드롭/패킷손실: `BASE_TICK` 주기적 송신(수초 간격) + `RLE`/`SILENT` 활용
 
 ---
+
+## Appendix E. 향후 검증할일들 (TODO Lists)
+
+✅ TODO 정리 및 권장 접근
+1. LLM + UE8M0 / UE4T 소프트웨어 적용
+
+목적: 기존 공개 LLM(GPT-NeoX, LLaMA, Mistral 등)에 UE8M0, UE4T quantization/encoding scheme 적용 → SW level feasibility 검증
+
+작업 흐름:
+
+HuggingFace transformer 기반 LLM에서 Linear/GEMM layer weight + activation quantization을 UE8M0 포맷으로 바꿔보기
+
+기존 INT8/FP8 quantization 코드 비교 (ex. bitsandbytes, QLoRA와 대비)
+
+Metric: perplexity, BLEU, accuracy drop vs 속도/메모리 절감
+
+결과 기대: “성능 대비 효율성 우위”가 수치로 확인되면 GPU/TPU 대응 근거가 생김
+
+2. FPGA 기반 시뮬레이션 준비
+
+목적: ASIC 전 단계로서 FPGA에서 UE8M0/UE4T 동작을 cycle-level로 검증
+
+작업 흐름:
+
+Vivado/Vitis HLS 기반으로 encoder/decoder 블록 RTL 코딩
+
+시그마-델타 누산기, SCALE, BASE_TICK 등 각각 모듈화
+
+On-FPGA testbench: (a) 랜덤 입력 시그널, (b) real dataset 일부 (waveform/이미지)
+
+출력 토큰 → host-side decode → 원본 재구성과 PSNR/MSE 비교
+
+결과 기대: cycle, LUT/FF 자원, 전력 추정치 확보 → ASIC feasibility 보고서 작성 가능
+
+3. 학습까지 지원하는 아키텍처 확장
+
+문제점: 기존 NPU/NeuroSoC는 inference 최적화 위주, 학습(backprop) 지원 취약
+
+UE8M0/UE4T 기반 확장 아이디어:
+
+SCALE/E 파라미터를 gradient backprop 시 learnable variable로 두어, 학습 과정에서 동적 적응
+
+NORM payload의 4비트 강도를 “pseudo-gradient” 형태로 학습 루프에 삽입
+
+FPGA/시뮬레이터 레벨에서 toy training task (MNIST, simple CNN) 먼저 검증
+
+결과 기대: “UE quantized spiking+ANN 하이브리드 학습 가능성” 입증 → SNN/ANN 브릿지 실현
+
+4. YOLO 등 3D 시계열 대용량 데이터 검증
+
+목적: 영상/음성 등 대규모 시계열 3차원 데이터에서 UE quantization이 성능/효율을 유지하는지 확인
+
+작업 흐름:
+
+YOLOv8, Whisper 등 오픈모델에 activation/output quantization을 UE8M0/UE4T로 교체
+
+dataset: COCO(영상), LibriSpeech(음성)
+
+성능 metric: mAP (YOLO), WER (Whisper)
+
+효율 metric: GPU mem 사용량, throughput (fps), 전력소모(가능시)
+
+결과 기대: 이미지/음성 두 분야에서 “실증적 결과” 확보 → 특허/논문에 실리드 근거
+
+🛠️ 제안되는 실행 단계
+
+SW 실험팀: HuggingFace 기반 quantization prototype → 성능 수치 뽑기
+
+FPGA팀: Vivado RTL/HLS로 encoder/decoder cycle simulation
+
+연구팀: “학습 알고리즘 통합” 실험 (toy training) → feasibility 확인
+
+응용팀: YOLO/Whisper dataset 적용 → real-world metric 확보
+**Changelog v0.3**  
+- TODO 정리 및 추가.
 
 **Changelog v0.2**  
 - NORM 후 잔차 반영(`r += (d - d̂)`) 명시

@@ -23,6 +23,15 @@ By combining a `2^E` shift-only scale with FP8 mantissa, it covers a wide dynami
 
 ---
 
+**UE4T** is a lightweight encoding scheme that extends the **UE8M0 philosophy** into a **4-bit format**.  
+- 2^E scaling (shift) + ΣΔ events + 4-bit token map  
+- Small changes: ΣΔ ±1, Large changes: MAX/MIN, Medium: NORM_ESC+payload  
+- Hardware-optimized with no multipliers required  
+
+👉 [UE4T v0.3 Full Documentation](docs/ue4t_format_v.0.3.md)
+
+---
+
 ## ✨ What’s UE8M0?
 - **Differential**: remove baseline `b` (EMA) from input `x` → `d = x - b`  
 - **Event-based**: small changes → ΣΔ ±1 pulse, large changes → **MAX/MIN** events  
