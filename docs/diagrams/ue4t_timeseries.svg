@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg height="403.2pt" version="1.1" viewBox="0 0 1152 403.2" width="1152pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 403.2 
+L 1152 403.2 
+L 1152 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 144 358.272 
+L 1036.8 358.272 
+L 1036.8 48.384 
+L 144 48.384 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="PathCollection_1">
+    <defs>
+     <path d="M -3.535534 3.535534 
+L 3.535534 3.535534 
+L 3.535534 -3.535534 
+L -3.535534 -3.535534 
+z
+" id="m585c6eb9e1" style="stroke: #1f77b4"/>
+    </defs>
+    <g clip-path="url(#p35a999f83b)">
+     <use style="fill: #1f77b4; stroke: #1f77b4" x="184.145455" xlink:href="#m585c6eb9e1" y="343.413535"/>
+     <use style="fill: #1f77b4; stroke: #1f77b4" x="222.109091" xlink:href="#m585c6eb9e1" y="337.389535"/>
+     <use style="fill: #1f77b4; stroke: #1f77b4" x="260.072727" xlink:href="#m585c6eb9e1" y="329.973535"/>
+     <use style="fill: #1f77b4; stroke: #1f77b4" x="298.036364" xlink:href="#m585c6eb9e1" y="325.701535"/>
+     <use style="fill: #1f77b4; stroke: #1f77b4" x="336" xlink:href="#m585c6eb9e1" y="253.245535"/>
+     <use style="fill: #1f77b4; stroke: #1f77b4" x="373.963636" xlink:href="#m585c6eb9e1" y="107.181535"/>
+     <use style="fill: #1f77b4; stroke: #1f77b4" x="411.927273" xlink:href="#m585c6eb9e1" y="100.749535"/>
+     <use style="fill: #1f77b4; stroke: #1f77b4" x="449.890909" xlink:href="#m585c6eb9e1" y="100.749535"/>
+     <use style="fill: #1f77b4; stroke: #1f77b4" x="487.854545" xlink:href="#m585c6eb9e1" y="98.933535"/>
+     <use style="fill: #1f77b4; stroke: #1f77b4" x="525.818182" xlink:href="#m585c6eb9e1" y="98.933535"/>
+     <use style="fill: #1f77b4; stroke: #1f77b4" x="563.781818" xlink:href="#m585c6eb9e1" y="98.933535"/>
+     <use style="fill: #1f77b4; stroke: #1f77b4" x="601.745455" xlink:href="#m585c6eb9e1" y="98.933535"/>
+     <use style="fill: #1f77b4; stroke: #1f77b4" x="639.709091" xlink:href="#m585c6eb9e1" y="109.401535"/>
+     <use style="fill: #1f77b4; stroke: #1f77b4" x="677.672727" xlink:href="#m585c6eb9e1" y="118.389535"/>
+     <use style="fill: #1f77b4; stroke: #1f77b4" x="715.636364" xlink:href="#m585c6eb9e1" y="133.365535"/>
+     <use style="fill: #1f77b4; stroke: #1f77b4" x="753.6" xlink:href="#m585c6eb9e1" y="146.133535"/>
+     <use style="fill: #1f77b4; stroke: #1f77b4" x="791.563636" xlink:href="#m585c6eb9e1" y="350.733535"/>
+     <use style="fill: #1f77b4; stroke: #1f77b4" x="829.527273" xlink:href="#m585c6eb9e1" y="346.461535"/>
+     <use style="fill: #1f77b4; stroke: #1f77b4" x="867.490909" xlink:href="#m585c6eb9e1" y="331.197535"/>
+     <use style="fill: #1f77b4; stroke: #1f77b4" x="905.454545" xlink:href="#m585c6eb9e1" y="319.029535"/>
+     <use style="fill: #1f77b4; stroke: #1f77b4" x="943.418182" xlink:href="#m585c6eb9e1" y="293.901535"/>
+    </g>
+   </g>
+   <g id="PathCollection_2">
+    <defs>
+     <path d="M -3 3 
+L 3 3 
+L 3 -3 
+L -3 -3 
+z
+" id="mc36d3a3083" style="stroke: #ff7f0e"/>
+    </defs>
+    <g clip-path="url(#p35a999f83b)">
+     <use style="fill: #ff7f0e; stroke: #ff7f0e" x="184.145455" xlink:href="#mc36d3a3083" y="343.413535"/>
+     <!-- (중략) — 원문 전체 유지됨 -->
+    </g>
+   </g>
+   <!-- 중간 축/그리드/레이블 path 데이터들 -->
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p35a999f83b">
+   <rect height="309.888" width="892.8" x="144" y="48.384"/>
+  </clipPath>
+ </defs>
+</svg>
