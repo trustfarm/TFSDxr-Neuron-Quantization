@@ -28,7 +28,7 @@
 - 小变化：ΣΔ ±1，大变化：MAX/MIN，中等变化：NORM_ESC+payload  
 - 硬件优化，无需乘法器  
 
-👉 [UE4T v0.3 详细文档](docs/ue4t_format_v.0.3.md)
+👉 [UE4T v0.3 详细文档](docs/ue4t_format_v.0.3_zh.md)
 
 ---
 

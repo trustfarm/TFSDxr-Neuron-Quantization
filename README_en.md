@@ -28,7 +28,7 @@ By combining a `2^E` shift-only scale with FP8 mantissa, it covers a wide dynami
 - Small changes: ΣΔ ±1, Large changes: MAX/MIN, Medium: NORM_ESC+payload  
 - Hardware-optimized with no multipliers required  
 
-👉 [UE4T v0.3 Full Documentation](docs/ue4t_format_v.0.3.md)
+👉 [UE4T v0.3 Full Documentation](docs/ue4t_format_v.0.3_en.md)
 
 ---
 

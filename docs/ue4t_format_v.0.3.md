@@ -88,11 +88,11 @@ update:
 ---
 ## 4) 디코더 요약
 
-- 인코더와 동일한 b·E 갱신 룰 공유
+- 인코더와 동일한 `b`·`E` 갱신 룰 공유
 
-- 토큰 처리: SD±, NORM_ESC+payload, MAX/MIN, SCALE±, SILENT/RLE, BASE_TICK
+- 토큰 처리: `SD±`, `NORM_ESC+payload`, `MAX/MIN`, `SCALE±`, `SILENT/RLE`, `BASE_TICK`
 
-- 전송 이슈 대비: BASE_TICK 주기적 송신, CRC4 활용 권장
+- 전송 이슈 대비: `BASE_TICK` 주기적 송신, `CRC4` 활용 권장
 
 ---
 ## 5) 파라미터 튜닝 가이드
