@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="340">
+  <rect width="100%" height="100%" fill="white"/>
+  <g font-family="Helvetica" font-size="12" stroke="black" fill="none">
+    <text x="360" y="20" text-anchor="middle" fill="black">BASE_TICK resync example (conceptual)</text>
+    <line x1="60" y1="280" x2="660" y2="280" stroke="black"/>
+    <line x1="60" y1="60" x2="60" y2="280" stroke="black"/>
+    <text x="360" y="320" text-anchor="middle" fill="black">time (s)</text>
+    <text x="20" y="170" transform="rotate(-90 20,170)" fill="black">value</text>
+  </g>
+  <!-- Truth line -->
+  <polyline points="60,200 100,180 140,170 180,160 220,170 260,180 300,200 340,220 380,230 420,240 460,230 500,220 540,200 580,180 620,170 660,160"
+            fill="none" stroke="green" stroke-width="2"/>
+  <!-- Decoder drifted -->
+  <polyline points="60,200 100,190 140,190 180,190 220,190 260,190 300,210 340,230 380,250 420,250 460,250 500,240 540,220 580,200 620,180 660,160"
+            fill="none" stroke="red" stroke-dasharray="5,5" stroke-width="2"/>
+  <!-- Drop start and BASE_TICK markers -->
+  <line x1="260" y1="60" x2="260" y2="280" stroke="gray" stroke-dasharray="3,3"/>
+  <text x="265" y="75" fill="black" transform="rotate(90 265,75)">drop start</text>
+  <line x1="420" y1="60" x2="420" y2="280" stroke="gray" stroke-dasharray="3,3"/>
+  <text x="425" y="75" fill="black" transform="rotate(90 425,75)">BASE_TICK</text>
+  <g>
+    <text x="580" y="80" fill="green">x (truth)</text>
+    <text x="580" y="100" fill="red">x̂ (decoder)</text>
+  </g>
+</svg>

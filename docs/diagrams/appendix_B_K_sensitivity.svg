@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="320">
+  <rect width="100%" height="100%" fill="white"/>
+  <g font-family="Helvetica" font-size="12" stroke="black" fill="none">
+    <text x="280" y="20" text-anchor="middle" fill="black">K Sensitivity: Emission count vs K (1s window)</text>
+    <line x1="60" y1="260" x2="500" y2="260" stroke="black"/>
+    <line x1="60" y1="60" x2="60" y2="260" stroke="black"/>
+    <text x="280" y="300" text-anchor="middle" fill="black">K (threshold multiplier)</text>
+    <text x="15" y="160" transform="rotate(-90 15,160)" fill="black">ΣΔ emission count</text>
+  </g>
+  <g stroke="blue" fill="blue">
+    <!-- Example data points -->
+    <circle cx="100" cy="230" r="4"/>
+    <circle cx="150" cy="200" r="4"/>
+    <circle cx="200" cy="180" r="4"/>
+    <circle cx="250" cy="150" r="4"/>
+    <circle cx="300" cy="130" r="4"/>
+    <circle cx="350" cy="120" r="4"/>
+    <circle cx="400" cy="110" r="4"/>
+    <circle cx="450" cy="100" r="4"/>
+    <polyline points="100,230 150,200 200,180 250,150 300,130 350,120 400,110 450,100"
+              fill="none" stroke="blue" stroke-width="2"/>
+  </g>
+</svg>

@@ -1,4 +1,4 @@
-# UE4T: 4-bit Event/Differential Quantization — v0.1.1
+# UE4T: 4-bit Event/Differential Quantization — v0.2
 
 본 문서는 v0.1에서 다음 **핵심 개선**을 반영했습니다.
 
@@ -104,7 +104,7 @@ K 값을 변화시키며 1초 윈도우에서 ΣΔ 발화량을 측정한 예시
 ## Appendix C. BASE_TICK Resync Timeline
 토큰 드롭 후 `BASE_TICK`으로 b가 재동기화되는 개념 예시입니다.
 
-![BASE_TICK Resync](figs/appendix_C_BASE_TICK_resync.svg)
+![BASE_TICK Resync](diagrams/appendix_C_BASE_TICK_resync.svg)
 
 - `drop start` 이후 디코더 출력 x̂가 오프셋 드리프트  
 - `BASE_TICK` 시점에 기준이 회복되어 x에 재정렬
