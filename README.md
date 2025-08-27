@@ -29,7 +29,7 @@
 ## ✨ What’s UE8M0?
 - **Differential**: 입력 `x`에서 기준 `b`(EMA) 제거 → `d = x - b`  
 - **Event-based**: 작은 변화는 ΣΔ ±1 pulse, 큰 변화는 **MAX/MIN** 이벤트  
-- **Shift-only scale**: UE8M0의 `E`는 2의 거듭제곱 스케일 → 하드웨어乘法기 불필요  
+- **Shift-only scale**: UE8M0의 `E`는 2의 거듭제곱 스케일 → 하드웨어곱셈연산 불필요  
 - **FP8 mantissa**: 정밀도 담당(E4M3/E5M2)
 
 ---
