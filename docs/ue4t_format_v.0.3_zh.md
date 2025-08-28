@@ -118,6 +118,11 @@ update:
 
 ---
 
+## 7) 📎 Related Works : Trustfarm AI UE4T NeuroMorphic Chip Architecture
+- [TFAI NMC Architecture](docs/ue4t_nmc/TFAI_NMC_Architecture.md)
+
+---
+
 ## 7) 后续验证（TODO）
 
 1. 应用于 LLM（UE8M0/UE4T 量化 → 困惑度/准确率 vs 效率）
@@ -130,8 +135,8 @@ update:
 
 ---
 
-## Changelog v0.3
-
+## Changelog v0.3 a1
+- Adds TFAI NMC architecture
 - 基于 v0.2 的整合
 - 修复错别字与格式
 - 加强 K、BASE_TICK 说明

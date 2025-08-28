@@ -1,0 +1,14 @@
+digraph NMC_NOC {
+  label = "UE4T 3-Stage NoC (PBH Hybrid) v0.1";
+  labelloc = "t";
+
+  rankdir=TB;
+  node [shape=box, style="rounded,filled", fontname="Helvetica"];
+  edge [color="#333333", arrowsize=0.8];
+
+  stage1 [label="Stage 1\n(Local Mesh, 256 cell/tile)", fillcolor="#CCE5FF"];
+  stage2 [label="Stage 2\n(Cluster PBH Arbiter)", fillcolor="#E6FFCC"];
+  stage3 [label="Stage 3\n(Global Hybrid Mesh-Tree)", fillcolor="#FFF2CC"];
+
+  stage1 -> stage2 -> stage3;
+}

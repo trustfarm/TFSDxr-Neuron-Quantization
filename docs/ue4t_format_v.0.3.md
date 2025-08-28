@@ -118,14 +118,20 @@ update:
 - BASE_TICK Resync Timeline → ![appendix_C_BASE_TICK_resync.svg](diagrams/appendix_C_BASE_TICK_resync.svg)
 
 ---
-## 7) 향후 검증 (TODO)
+
+## 7) 📎 관련 자료 : Trustfarm AI UE4T NeuroMorphic Chip Architecture
+- [TFAI NMC Architecture](docs/ue4t_nmc/TFAI_NMC_Architecture.md)
+
+---
+## 8) 향후 검증 (TODO)
   1. LLM 적용 (UE8M0/UE4T quantization → perplexity/accuracy vs 효율)
   2. FPGA 기반 simulation (cycle-level 자원/전력)
   3. 학습 지원 아키텍처 (SCALE learnable, pseudo-gradient)
   4. YOLO/Whisper 등 대규모 시계열 데이터 검증 (mAP, WER, throughput)
+---
 
-## Changelog v0.3
-
+## Changelog v0.3 a1
+- Adds TFAI NMC architecture
 - v0.2 기반 내용 정리
 - 오타/정렬/표식 개선
 - K, BASE_TICK 설명 강화

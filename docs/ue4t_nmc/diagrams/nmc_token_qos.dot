@@ -1,0 +1,16 @@
+digraph NMC_QOS {
+  label = "UE4T Token → QoS Mapping v0.1";
+  labelloc = "t";
+
+  rankdir=TB;
+  node [shape=box, style="rounded,filled", fontname="Helvetica"];
+  edge [color="#333333", arrowsize=0.8];
+
+  minmax [label="MIN/MAX\n(Highest Priority)", fillcolor="#FF9999"];
+  scale [label="SCALE\n(High Priority)", fillcolor="#FFD966"];
+  norm [label="NORM\n(Medium Priority)", fillcolor="#CCE5FF"];
+  sd [label="ΣΔ\n(Low Priority)", fillcolor="#E6FFCC"];
+  silent [label="SILENT\n(Lowest Priority)", fillcolor="#E0E0E0"];
+
+  minmax -> scale -> norm -> sd -> silent;
+}

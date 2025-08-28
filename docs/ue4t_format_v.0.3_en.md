@@ -121,6 +121,10 @@ update:
 - BASE_TICK Resync Timeline → ![appendix_C_BASE_TICK_resync.svg](diagrams/appendix_C_BASE_TICK_resync.svg)
 
 ---
+## 7) 📎 Related Works : Trustfarm AI UE4T NeuroMorphic Chip Architecture
+- [TFAI NMC Architecture](docs/ue4t_nmc/TFAI_NMC_Architecture.md)
+
+---
 
 ## 7) Future validation (TODO)
 
@@ -134,8 +138,8 @@ update:
 
 ---
 
-## Changelog v0.3
-
+## Changelog v0.3 a1
+- Adds TFAI NMC architecture
 - Consolidated from v0.2
 - Typos/formatting fixed
 - K, BASE_TICK descriptions strengthened
