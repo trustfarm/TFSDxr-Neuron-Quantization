@@ -26,7 +26,7 @@ UE4T는 **이벤트 기반(event-driven)**과 **스파이크 강도(spike intens
 4. **PBH 기반 NoC**  
    - **Pipelined Binary Heap (PBH) Arbiter**로 토큰 우선순위 라우팅  
    - Token Class → QoS 매핑: `MIN/MAX > SCALE > NORM > ΣΔ > SILENT`  
-   - 토큰 클래스 자체가 네트워크 우선순위와 직결
+   - 토큰 클래스 자체가 네트워크 우선순위와 직결 
 
 ---
 
