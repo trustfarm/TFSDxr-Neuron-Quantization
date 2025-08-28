@@ -122,7 +122,7 @@ update:
 
 ---
 ## 7) 📎 Related Works : Trustfarm AI UE4T NeuroMorphic Chip Architecture
-- [TFAI NMC Architecture](docs/ue4t_nmc/TFAI_NMC_Architecture.md)
+- [TFAI NMC Architecture](ue4t_nmc/TFAI_NMC_Architecture.md)
 
 ---
 
