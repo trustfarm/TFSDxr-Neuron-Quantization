@@ -26,6 +26,42 @@
 
 ---
 
+## 🔥 UE4T: Training 가능한 NeuroSoC의 열쇠
+
+기존 뉴로모픽 칩(SNN 기반)은 **스파이크 여부(0/1)**와 **발화 시점**만으로 정보를 표현하기 때문에,  
+정밀한 학습(Training)에는 한계가 있었습니다. ANN은 학습은 가능하지만 전력/자원 소모가 너무 큽니다.
+
+UE4T는 이 두 가지의 한계를 동시에 극복합니다.
+
+### ✅ 차별화 포인트
+- **4bit 토큰으로 스파이크 강도(intensity) 표현**
+  - `ΣΔ` → 작은 변화 누적
+  - `MAX/MIN` → 큰 변화 이벤트
+  - `NORM_ESC + payload(4bit)` → **스파이크 강도 정량화**
+  - `SCALE (2^E)` → 동적 범위 확장
+- 곱셈기 없이(Shift 기반) FP8 수준의 스케일링 달성
+
+### 🧠 학습(Training) 가능
+- 스파이크가 단순한 0/1 이벤트가 아니라 **float-like 값**으로 활용 가능  
+- 기존 SNN에선 불가능했던 **Gradient Descent 기반 학습** 가능  
+- **대규모 CNN / Transformer 모델까지 학습 확장 가능**
+
+### 📊 비교
+| 구분 | 기존 SNN | ANN | **UE4T** |
+|------|----------|-----|----------|
+| 표현 | Spike=0/1, Timing | FP32/INT8 등 | **Spike+강도(4bit+Scale)** |
+| 학습 | STDP, 국소 규칙 | Gradient Descent | **Gradient Descent 가능** |
+| 전력 | 낮음 | 높음 | **낮음 (Shift+Event)** |
+| 정밀도 | 낮음 | 높음 | **높음 (강도 표현)** |
+| 적용모델 | 단순 패턴 | 대부분 | **복잡한 CNN/Transformer** |
+
+---
+
+> **UE4T는 “스파이크 강도”를 정량적으로 표현하는 최초의 4bit 이벤트 포맷**입니다.  
+> 이를 통해 기존 뉴로모픽이 불가능했던 **학습 가능한 NeuroSoC**를 실현합니다.
+
+---
+
 ## ✨ What’s UE8M0?
 - **Differential**: 입력 `x`에서 기준 `b`(EMA) 제거 → `d = x - b`  
 - **Event-based**: 작은 변화는 ΣΔ ±1 pulse, 큰 변화는 **MAX/MIN** 이벤트  

@@ -26,6 +26,43 @@ By combining a `2^E` shift-only scale with FP8 mantissa, it covers a wide dynami
 
 ---
 
+## 🔥 UE4T: The Key to Training-Capable NeuroSoCs
+
+Conventional neuromorphic chips (SNN-based) only encode **spike events (0/1)** and **timing**,  
+which makes precise training (learning) very limited.  
+ANNs can train but consume too much power/resources.
+
+UE4T overcomes both limitations at once.
+
+### ✅ Differentiation
+- **4-bit tokens to encode spike intensity**
+  - `ΣΔ` → accumulate small differences  
+  - `MAX/MIN` → large event  
+  - `NORM_ESC + payload(4bit)` → **quantized spike intensity**  
+  - `SCALE (2^E)` → expand dynamic range  
+- Achieves FP8-like scaling **without multipliers** (shift-only)
+
+### 🧠 Training Capable
+- Spikes are no longer just 0/1 events but **float-like values**  
+- Enables **Gradient Descent training** that SNNs couldn’t support  
+- Extensible to **large-scale CNN / Transformer models**
+
+### 📊 Comparison
+| Category | Conventional SNN | ANN | **UE4T** |
+|----------|------------------|-----|----------|
+| Representation | Spike=0/1, Timing | FP32/INT8 | **Spike+Intensity (4bit+Scale)** |
+| Training | STDP, local rules | Gradient Descent | **Gradient Descent possible** |
+| Power | Low | High | **Low (Shift+Event)** |
+| Precision | Low | High | **High (Intensity expression)** |
+| Applicable models | Simple patterns | Most | **Complex CNN/Transformers** |
+
+---
+
+> **UE4T is the first 4-bit event format that quantifies spike intensity.**  
+> This enables the world’s first **training-capable NeuroSoC** beyond inference-only neuromorphic chips.
+
+---
+
 ## ✨ What’s UE8M0?
 - **Differential**: remove baseline `b` (EMA) from input `x` → `d = x - b`  
 - **Event-based**: small changes → ΣΔ ±1 pulse, large changes → **MAX/MIN** events  
