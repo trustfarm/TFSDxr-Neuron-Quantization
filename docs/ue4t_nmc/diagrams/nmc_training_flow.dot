@@ -1,0 +1,18 @@
+digraph NMC_TRAIN {
+  label = "UE4T Training Flow v0.1";
+  labelloc = "t";
+
+  rankdir=TB;
+  node [shape=box, style="rounded,filled", fontname="Helvetica"];
+  edge [color="#333333", arrowsize=0.8];
+
+  sensor [label="Sensor Input\n(Frames/Audio)", fillcolor="#FFD699"];
+  enc [label="UE4T Encoder", fillcolor="#CCE5FF"];
+  forward [label="Forward Pass\nNeuron Cell Array", fillcolor="#E6FFCC"];
+  adapt [label="Adaptive Tile Mapping\n(ROI-aware)", fillcolor="#D9EAD3"];
+  host [label="Host CPU + Ext. Memory", fillcolor="#FFCCCC"];
+  backprop [label="Backpropagation\nWeight Update", fillcolor="#FFB366"];
+
+  sensor -> enc -> forward -> adapt;
+  adapt -> host -> backprop -> forward [style=dashed, label="Iterative\nUpdate"];
+}
