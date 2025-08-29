@@ -5,6 +5,13 @@ FPGA 프로토타입에서는 BRAM/분산RAM을 활용하지만, ASIC 구현에�
 
 ---
 
+## DRAM-like 메모리 조사자료
+
+More Detailed Study of DRAM-like Memory in SoC is 
+
+[UE4T 뉴런 셀 내 DRAM-like 메모리 스터디 (v0.2)](UE4T_Neuron_DRAMlike_Study_v0.2.md)
+
+---
 ## 🔑 메모리 계층 구조
 
 ### 1. Per-Cell (셀 로컬)
