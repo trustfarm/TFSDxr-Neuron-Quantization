@@ -1,0 +1,80 @@
+digraph NEURON_MEM_ARCH_V02 {
+  label = "UE4T Neuron Memory Architecture v0.2";
+  labelloc = "t";
+  fontsize=18;
+
+  rankdir=TB;
+  splines=ortho;
+  nodesep=0.9;
+  ranksep=1.2;
+  fontname="Helvetica";
+
+  node [shape=box, style="rounded,filled", fontname="Helvetica"];
+  edge [color="#333333", arrowsize=0.8, penwidth=1.2];
+
+  // ======================
+  // Per-Cell (local state)
+  // ======================
+  subgraph cluster_cell {
+    label="Per-Cell (Dynamic Latch RF)";
+    style="rounded,filled";
+    color="#CCE5FF";
+    fontcolor="#222222";
+    fontsize=14;
+
+    b_reg [label="EMA base b (12–16b)", fillcolor="#E6F2FF"];
+    e_reg [label="Scale E (5–6b)", fillcolor="#E6F2FF"];
+    r_reg [label="ΣΔ Accumulator r (16–24b)", fillcolor="#E6F2FF"];
+    flags [label="Flags / Timer", fillcolor="#E6F2FF"];
+    tokfifo [label="Recent Token FIFO\n(4b × N)", fillcolor="#E6F2FF"];
+  }
+
+  // ======================
+  // Per-Tile (shared mem)
+  // ======================
+  subgraph cluster_tile {
+    label="Per-Tile (GC-eDRAM Array, 256 Cell 공유)";
+    style="rounded,filled";
+    color="#E6FFCC";
+    fontcolor="#222222";
+    fontsize=14;
+
+    gcedram [label="GC-eDRAM Macro\n(Weights, Index, Token FIFO)\n1–8 KB", fillcolor="#F2FFF2"];
+    sa [label="SenseAmp + Precharge\n+ ECC/Parity", fillcolor="#FFF2CC"];
+    rfsm [label="Refresh FSM\n(온도/전압 aware,\nRow-wise refresh)", fillcolor="#FFD9B3"];
+  }
+
+  // ======================
+  // Host / External
+  // ======================
+  subgraph cluster_host {
+    label="Host / External Memory";
+    style="rounded,filled";
+    color="#FFCCCC";
+    fontcolor="#222222";
+    fontsize=14;
+
+    hostcpu [label="Host CPU"];
+    hostmem [label="External Memory\n(Training Weights)"];
+  }
+
+  // ======================
+  // Connections
+  // ======================
+  // Cell to Tile
+  b_reg -> gcedram [label="Token / State Exchange"];
+  e_reg -> gcedram [style=dashed, label="Scaling info"];
+  r_reg -> gcedram [style=dashed, label="Pulse / Event"];
+  tokfifo -> gcedram;
+
+  // Tile internals
+  gcedram -> sa -> rfsm;
+  rfsm -> gcedram [style=dashed, label="Periodic Refresh"];
+
+  // Host to Tile
+  hostcpu -> gcedram [dir=both, label="Weight Update\n(Training)"];
+  hostmem -> gcedram [dir=both, style=dashed, label="Load/Store Weights"];
+
+  // Self-refresh note
+  flags -> b_reg [style=dashed, color="#999999", label="Token Tick\n(Self-Refresh)"];
+}

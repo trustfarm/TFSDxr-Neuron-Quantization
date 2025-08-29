@@ -100,6 +100,12 @@ UE4T 기반 **뉴런 셀 내부 메모리**를 FPGA에서는 BRAM/분산 RAM으�
 
 ---
 
+## 블록다이어그램
+
+![**UE4T Neuron Memory Architecture v0.2**](diagrams/neuron_mem_arch_v0.2.svg)
+
+---
+
 ## 참고(출처 식별자)
 
 - [sites.utexas.edu] Gain-Cell eDRAM 관련 연구/강의 자료  
