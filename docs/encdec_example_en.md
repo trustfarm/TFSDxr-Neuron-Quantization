@@ -1,3 +1,8 @@
+**Disclaimer**: The Korean (KO) version of this document is the original reference. In case of any translation issues or ambiguities, please refer to the Korean version.
+
+---
+
+
 # UE8M0 Encoder–Decoder Example (encdec_example_en.md)
 
 This document provides **sample parameter defaults** and a step-by-step example of  

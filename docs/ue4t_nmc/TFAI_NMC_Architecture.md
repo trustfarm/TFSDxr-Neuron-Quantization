@@ -1,3 +1,8 @@
+**Disclaimer** : 본 문서는 한국어(KO) 버전이 원본이며, 번역 과정에서 발생할 수 있는 문제나 모호한 부분은 한국어 버전을 참조하시기 바랍니다.
+
+---
+
+
 # TFAI NeuroMorphic Chip (NMC) Architecture
 
 본 문서는 **UE4T 기반 NeuroMorphic ASIC**의 외부 공개용 아키텍처를 설명합니다.  
@@ -53,9 +58,9 @@ UE4T는 **이벤트 기반(event-driven)**과 **스파이크 강도(spike intens
 3. Host CPU + External Memory: Backpropagation & Weight Update  
 
 **자원 요구량**  
-- CNN은 기본적으로 **고정 커널 + 균일 연산** 구조 → ROI 밖에서도 불필요한 연산 발생.  
+- CNN은 기본적으로 **고정 커널 + 균일 연산** 구조 → POI (Point Of Interest) 밖에서도 불필요한 연산 발생.  
 - 최근 영상 알고리즘(예: Video Codec, Object Detection)은 **adaptive tiling** 기법을 적용,  
-  ROI 영역은 작은 tile로, 배경은 큰 tile로 처리하여 효율을 극대화.  
+  POI 영역은 작은 tile로, 배경은 큰 tile로 처리하여 효율을 극대화.  
 - UE4T NMC도 동일 원리 채택: **뉴런셀과 tile 매핑을 유연하게 적용**.  
 - 현재 설계 목표: **약 10만 개 뉴런셀 단위에서 adaptive tiling 지원**.  
 - 이로써 CNN 학습 시에도 자원 낭비 없이 실시간 학습 최적화 가능.

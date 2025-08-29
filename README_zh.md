@@ -1,3 +1,9 @@
+**免责声明**：本文件的韩文 (KO) 版本为原始版本。  
+如在翻译中出现问题或歧义，请参考韩文版本。
+
+---
+
+
 # UE8M0-Neuron-Quant (v0.1.4a)
 
 [KO](README.md) | [EN](README_en.md) | [ZH](README_zh.md)

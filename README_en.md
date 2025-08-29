@@ -1,3 +1,8 @@
+**Disclaimer**: The Korean (KO) version of this document is the original reference. In case of any translation issues or ambiguities, please refer to the Korean version.
+
+---
+
+
 # UE8M0-Neuron-Quant (v0.1.4a)
 
 [KO](README.md) | [EN](README_en.md) | [ZH](README_zh.md)

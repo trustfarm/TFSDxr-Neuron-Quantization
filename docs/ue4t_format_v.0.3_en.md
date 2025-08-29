@@ -1,3 +1,8 @@
+**Disclaimer**: The Korean (KO) version of this document is the original reference. In case of any translation issues or ambiguities, please refer to the Korean version.
+
+---
+
+
 # UE4T: 4-bit Event/Differential Quantization — v0.3
 
 UE4T keeps the UE8M0 philosophy (**differential, event-driven, 2^E scaling, EMA(b)**) while expressing **tokens in 4 bits (nibble)**.  
