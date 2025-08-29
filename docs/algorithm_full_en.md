@@ -115,9 +115,9 @@ Share the same E updates via `SCALE(±1)`, reconstruct `NORM(q)` as `deFP8(q) * 
 ---
 ## 7) Diagrams
 - `diagrams/ue8m0_overview_auto_en.svg` 
-  [ue8m0_overview](diagrams/ue8m0_overview_auto_en.svg) 
+  ![ue8m0_overview](diagrams/ue8m0_overview_auto_en.svg) 
 - `diagrams/ue8m0_sync_auto_vertical_en.svg`
-  [ue8m0_sync_auto](diagrams/ue8m0_sync_auto_vertical_en.svg)
+  ![ue8m0_sync_auto](diagrams/ue8m0_sync_auto_vertical_en.svg)
 
 ## 8) Encoder–Decoder Example
 - [Encoder/Decoder Example](encdec_example_en.md)

@@ -132,9 +132,9 @@ for each sample x at time now with step Δt:
 ---
 ## 7) 다이어그램
 - `diagrams/ue8m0_overview_auto.svg` (개요/시간/오차피드백/스케일 흐름)  
-   [ue8m0_overview](diagrams/ue8m0_overview_auto.svg) 
+   ![ue8m0_overview](diagrams/ue8m0_overview_auto.svg) 
 - `diagrams/ue8m0_sync_auto_vertical.svg` (인코더‑디코더 동기/토큰 스트림)
-   [ue8m0_sync_auto](diagrams/ue8m0_sync_auto_vertical.svg)
+   ![ue8m0_sync_auto](diagrams/ue8m0_sync_auto_vertical.svg)
 
 > 모든 다이어그램은 **소스 덤프**(JSON 레이아웃 & DOT)와 함께 제공합니다.
 
