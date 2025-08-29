@@ -5,6 +5,9 @@
 
 # UE4T: 4-bit Event/Differential Quantization — v0.3
 
+[KO](ue4t_format_v.0.3.md) | [EN](ue4t_format_v.0.3_en.md) | [ZH](ue4t_format_v.0.3_zh.md)
+
+
 UE4T는 UE8M0의 철학(**차분·이벤트·2^E 스케일·EMA(b)**)을 유지하면서, **토큰을 4비트(니블)**로 표현하는 포맷입니다.  
 목표는 **곱셈 없이(shift)**, **작은 LUT**와 **ΣΔ 누산**으로 미세 변화를 효율적으로 전달하는 것입니다.
 

@@ -4,6 +4,10 @@
 
 # UE4T Neuron Cell Memory Hierarchy
 
+
+[KO](Neuron_Cell_Memory.md) | [EN](Neuron_Cell_Memory_en.md) | [ZH](Neuron_Cell_Memory_zh.md)
+
+
 This document describes the **memory hierarchy inside a UE4T-based neuron cell**.  
 In FPGA prototypes, BRAM/distributed RAM is utilized, but in ASIC implementations, it is advantageous to combine **dynamic latch-based RF** and **GC-eDRAM**.
 

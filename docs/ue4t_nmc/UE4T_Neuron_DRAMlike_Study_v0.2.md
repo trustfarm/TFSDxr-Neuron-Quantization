@@ -4,6 +4,11 @@
 
 # UE4T 뉴런 셀 내 DRAM-like 메모리 스터디 (v0.2)
 
+
+[KO](UE4T_Neuron_DRAMlike_Study_v0.2.md) | [EN](UE4T_Neuron_DRAMlike_Study_v0.2_en.md) | [ZH](UE4T_Neuron_DRAMlike_Study_v0.2_zh.md)
+
+
+
 UE4T 기반 **뉴런 셀 내부 메모리**를 FPGA에서는 BRAM/분산 RAM으로 프로토타이핑하되, ASIC에서는 **동적 플립플롭/펄스드 래치 기반 RF**와 **GC-eDRAM**(Gain-Cell eDRAM) 등 **DRAM-like 저장소**로 전환하는 방향을 정리한다. 본 문서는 후보 기술, 배치 전략(무엇을 어디에 둘 것인가), 리프레시/신뢰성, 자원 감(면적·전력·타이밍), FPGA 연결, 권장 마이크로아키텍처, 리스크/완화안을 한 번에 제시한다.
 
 ---

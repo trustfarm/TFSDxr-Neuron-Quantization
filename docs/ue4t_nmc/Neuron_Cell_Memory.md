@@ -5,6 +5,10 @@
 
 # UE4T Neuron Cell Memory Hierarchy (v0.1)
 
+
+[KO](Neuron_Cell_Memory.md) | [EN](Neuron_Cell_Memory_en.md) | [ZH](Neuron_Cell_Memory_zh.md)
+
+
 본 문서는 UE4T 기반 뉴런셀 내부의 **메모리 계층 구조**를 설명합니다.  
 FPGA 프로토타입에서는 BRAM/분산RAM을 활용하지만, ASIC 구현에서는 **동적 래치 기반 RF**와 **GC-eDRAM**을 조합하는 방식이 유리합니다.
 

@@ -1,4 +1,12 @@
+**Disclaimer**: The Korean (KO) version of this document is the original reference. In case of any translation issues or ambiguities, please refer to the Korean version.
+
+---
+
+
 # UE8M0‑Neuron‑Quant Algorithm (v0.1.3)
+
+[KO](algorithm_full_ko.md) | [EN](algorithm_full_en.md) | [ZH](algorithm_full_zh.md)
+
 
 This document combines **intuitive exposition (examples/flow)** and **technical grounding (math/considerations)** for both general readers and engineers.
 

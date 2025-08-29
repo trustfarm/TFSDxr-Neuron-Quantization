@@ -5,6 +5,10 @@
 
 # TFAI NeuroMorphic Chip (NMC) Architecture
 
+
+[KO](TFAI_NMC_Architecture.md) | [EN](TFAI_NMC_Architecture_en.md) | [ZH](TFAI_NMC_Architecture_zh.md)
+
+
 본 문서는 **UE4T 기반 NeuroMorphic ASIC**의 외부 공개용 아키텍처를 설명합니다.  
 UE4T는 **이벤트 기반(event-driven)**과 **스파이크 강도(spike intensity) 표현**을 동시에 지원하는 4bit 포맷으로,  
 기존 SNN(Spiking Neural Network)과 ANN(Artificial Neural Network)의 한계를 극복합니다.

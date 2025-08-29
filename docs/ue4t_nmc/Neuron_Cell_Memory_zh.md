@@ -5,6 +5,9 @@
 
 # UE4T 神经元单元内存层次结构
 
+[KO](Neuron_Cell_Memory.md) | [EN](Neuron_Cell_Memory_en.md) | [ZH](Neuron_Cell_Memory_zh.md)
+
+
 本文档说明了基于 UE4T 的神经元单元内部的 **存储层次结构**。  
 在 FPGA 原型中使用 BRAM/分布式 RAM，而在 ASIC 实现中，结合 **动态锁存寄存器文件 (RF)** 与 **GC-eDRAM** 更为有利。
 

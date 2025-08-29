@@ -6,6 +6,10 @@
 
 # UE8M0‑Neuron‑Quant 算法 (v0.1.3)
 
+
+[KO](algorithm_full_ko.md) | [EN](algorithm_full_en.md) | [ZH](algorithm_full_zh.md)
+
+
 本文面向普通读者与工程师，同时提供**直观说明（示例/流程）**与**技术依据（公式/设计考量）**。
 
 ---

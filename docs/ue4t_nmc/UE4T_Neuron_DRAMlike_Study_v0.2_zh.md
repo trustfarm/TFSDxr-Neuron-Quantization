@@ -6,6 +6,11 @@
 
 # UE4T 神经元 DRAM-like 研究 v0.2
 
+
+[KO](UE4T_Neuron_DRAMlike_Study_v0.2.md) | [EN](UE4T_Neuron_DRAMlike_Study_v0.2_en.md) | [ZH](UE4T_Neuron_DRAMlike_Study_v0.2_zh.md)
+
+
+
 ## 1) 候选技术选项总结
 | 选项 | 位单元 | 密度 | 速度/能耗 | 保持/刷新 | 端口/扩展性 | 备注 |
 |---|---|---|---|---|---|---|

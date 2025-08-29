@@ -5,6 +5,11 @@
 
 # UE8M0‑Neuron‑Quant 알고리즘 (v0.1.3)
 
+
+[KO](algorithm_full_ko.md) | [EN](algorithm_full_en.md) | [ZH](algorithm_full_zh.md)
+
+
+
 본 문서는 일반 독자와 엔지니어 모두가 이해하기 쉽도록 **직관적 서술(예시/흐름)**과 **기술적 보강(수식/근거)**을 함께 제공합니다.
 
 ---

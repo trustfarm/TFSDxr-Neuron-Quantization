@@ -5,6 +5,11 @@
 
 # UE4T Neuron DRAM-like Study v0.2
 
+
+[KO](UE4T_Neuron_DRAMlike_Study_v0.2.md) | [EN](UE4T_Neuron_DRAMlike_Study_v0.2_en.md) | [ZH](UE4T_Neuron_DRAMlike_Study_v0.2_zh.md)
+
+
+
 ## 1) Candidate technology option summary
 | Option | Bitcell | Density | Speed/Energy | Retention/Refresh | Port/Scalability | Note |
 |---|---|---|---|---|---|---|

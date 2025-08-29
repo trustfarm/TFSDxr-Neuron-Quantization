@@ -6,6 +6,9 @@
 
 # UE4T：4位 事件/差分 量化 — v0.3
 
+[KO](ue4t_format_v.0.3.md) | [EN](ue4t_format_v.0.3_en.md) | [ZH](ue4t_format_v.0.3_zh.md)
+
+
 UE4T 保持 UE8M0 的理念（**差分、事件驱动、2^E 缩放、EMA(b)**），并将 **令牌用 4 位（nibble）** 表达。  
 目标是通过 **无需乘法器（移位）**、**小型 LUT** 与 **ΣΔ 累加**，高效传递微小变化。
 

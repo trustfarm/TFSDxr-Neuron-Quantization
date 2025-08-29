@@ -5,6 +5,10 @@
 
 # UE8M0 Encoder–Decoder Example (encdec_example_en.md)
 
+
+[KO](encdec_example.md) | [EN](encdec_example_en.md) | [ZH](encdec_example_zh.md)
+
+
 This document provides **sample parameter defaults** and a step-by-step example of  
 **input time series → encoding (tokens) → decoding (reconstruction)** using more than 20 data points.
 

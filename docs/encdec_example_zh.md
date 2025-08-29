@@ -5,6 +5,10 @@
 
 # UE8M0 编码器–解码器示例 (encdec_example_zh.md)
 
+
+[KO](encdec_example.md) | [EN](encdec_example_en.md) | [ZH](encdec_example_zh.md)
+
+
 本文档提供了 **示例参数默认值**，并通过 20+ 数据点展示  
 **输入时序 → 编码(令牌) → 解码(重建)** 的全过程。
 

@@ -5,6 +5,9 @@
 
 # TFAI NeuroMorphic Chip (NMC) Architecture
 
+[KO](TFAI_NMC_Architecture.md) | [EN](TFAI_NMC_Architecture_en.md) | [ZH](TFAI_NMC_Architecture_zh.md)
+
+
 This document describes the external-facing architecture of the UE4T-based NeuroMorphic ASIC. UE4T is a 4-bit format that simultaneously supports **event-driven and spike intensity representation**, overcoming the limitations of conventional Spiking Neural Networks (SNNs) and Artificial Neural Networks (ANNs).
 
 ---

@@ -5,6 +5,9 @@
 
 # UE8M0 인코더·디코더 예제 (encdec_example.md)
 
+[KO](encdec_example.md) | [EN](encdec_example_en.md) | [ZH](encdec_example_zh.md)
+
+
 이 문서는 UE8M0-Neuron-Quant 알고리즘을 이해하기 위한 **샘플 파라미터 기본값**과  
 **시계열 입력 → 인코딩(토큰) → 디코딩(복원)** 과정을 **20개 이상**의 데이터로 상세히 보여줍니다.
 

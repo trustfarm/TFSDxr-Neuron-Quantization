@@ -5,6 +5,9 @@
 
 # UE4T: 4-bit Event/Differential Quantization — v0.3
 
+[KO](ue4t_format_v.0.3.md) | [EN](ue4t_format_v.0.3_en.md) | [ZH](ue4t_format_v.0.3_zh.md)
+
+
 UE4T keeps the UE8M0 philosophy (**differential, event-driven, 2^E scaling, EMA(b)**) while expressing **tokens in 4 bits (nibble)**.  
 The goal is to efficiently convey small changes **without multipliers (shift)**, using a **small LUT** and **ΣΔ accumulation**.
 

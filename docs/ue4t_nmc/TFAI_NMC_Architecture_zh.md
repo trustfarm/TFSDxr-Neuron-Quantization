@@ -6,6 +6,9 @@
 
 # TFAI 神经形态芯片 (NMC) 架构
 
+[KO](TFAI_NMC_Architecture.md) | [EN](TFAI_NMC_Architecture_en.md) | [ZH](TFAI_NMC_Architecture_zh.md)
+
+
 本文档描述了基于 **UE4T 的神经形态 ASIC 的外部公开架构**。UE4T 是一种 4bit 格式，**同时支持事件驱动 (event-driven)** , **和脉冲强度 (spike intensity) 表示**，克服了传统脉冲神经网络 (SNN) 和人工神经网络 (ANN) 的局限性。
 
 ---
