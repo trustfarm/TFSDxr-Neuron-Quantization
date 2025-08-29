@@ -103,10 +103,14 @@ UE4T는 **이벤트 기반(event-driven)**과 **스파이크 강도(spike intens
 ## 🔑 Additional Improvements Plan
 
  - 기존 Neuron Cell 블록에서 전력소모가 많은 SRAM 대신 DRAM-like 한 Dynamic Latch 구조적용안.
+
  - [Detailed Description of **TFAI Neuron Cell Memory Hierarchy (v0.1)**](Neuron_Cell_Memory.md)
-
-
  - ![Neuron Cell Memory](diagrams/neuron_cell_memory.svg)
+
+ - More Detailed Study of DRAM-like Memory in SoC is 
+ - [UE4T 뉴런 셀 내 DRAM-like 메모리 스터디 (v0.2)](UE4T_Neuron_DRAMlike_Study_v0.2.md)
+
+---
 
 
 ## 📌 Summary
