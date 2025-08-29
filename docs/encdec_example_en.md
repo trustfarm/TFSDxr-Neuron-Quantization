@@ -44,8 +44,13 @@ This document provides **sample parameter defaults** and a step-by-step example 
 
 ## 6) SVG sample plots
 
-- 📈 [Input vs Reconstructed time series](diagrams/encdec_timeseries.svg)  
-- 🪙 [Token timeline](diagrams/encdec_tokens.svg)
+- 📈 **Input vs Reconstructed time series**
+  
+  ![Input vs Reconstructed time series](diagrams/encdec_timeseries.svg)  
+
+- 🪙 **Token timeline**
+   
+  ![Token timeline](diagrams/encdec_tokens.svg)
 
 ---
 
