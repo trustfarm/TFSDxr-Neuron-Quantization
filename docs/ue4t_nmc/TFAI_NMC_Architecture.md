@@ -100,6 +100,15 @@ UE4T는 **이벤트 기반(event-driven)**과 **스파이크 강도(spike intens
 
 ---
 
+## 🔑 Additional Improvements Plan
+
+ - 기존 Neuron Cell 블록에서 전력소모가 많은 SRAM 대신 DRAM-like 한 Dynamic Latch 구조적용안.
+ - [Detailed Description of **TFAI Neuron Cell Memory Hierarchy (v0.1)**](Neuron_Cell_Memory.md)
+
+
+ - ![Neuron Cell Memory](diagrams/neuron_cell_memory.svg)
+
+
 ## 📌 Summary
 
 - UE4T 기반 NMC는 **Adaptive Tiling + Spike Intensity 표현**으로 CNN 학습까지 지원  

@@ -1,0 +1,38 @@
+digraph NEURON_MEM {
+  label = "UE4T Neuron Cell Memory Hierarchy v0.1";
+  labelloc = "t";
+
+  rankdir=TB;
+  node [shape=box, style="rounded,filled", fontname="Helvetica"];
+  edge [color="#333333", arrowsize=0.8];
+
+  // Cell-local dynamic latch
+  subgraph cluster_cell {
+    label="Neuron Cell (per-cell)";
+    style="rounded,filled";
+    color="#CCE5FF";
+    local_rf [label="Dynamic Latch RF\n(b, E, r, Flags)\n~32-64b", fillcolor="#E6F2FF"];
+    refresh [label="Self-Refresh via Token Tick\n(Pulsed re-write)", shape=note, fillcolor="#FFFFCC"];
+  }
+
+  // Tile-shared memory
+  subgraph cluster_tile {
+    label="Tile Shared (per 256 cell)";
+    style="rounded,filled";
+    color="#E6FFCC";
+    gc_edram [label="GC-eDRAM Macro\n(Weights, Index, Token FIFO)\n1-8 KB", fillcolor="#F2FFF2"];
+    sa [label="SenseAmp + Precharge\n+ ECC/Parity", fillcolor="#FFF2CC"];
+    refresh_fsm [label="Refresh FSM\n(Temp-aware, Row-wise)", fillcolor="#FFD9B3"];
+  }
+
+  // External
+  host [label="Host CPU/Ext. Memory\n(Training Weight Update)", fillcolor="#FFCCCC"];
+
+  // Connections
+  local_rf -> gc_edram [label="Token/State Exchange"];
+  gc_edram -> sa -> refresh_fsm;
+  refresh -> local_rf [style=dashed];
+  refresh_fsm -> gc_edram [style=dashed, label="Periodic Refresh"];
+
+  host -> gc_edram [dir=both, style=dashed, label="Backprop/Weight Update"];
+}
