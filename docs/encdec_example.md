@@ -1,14 +1,15 @@
+# TFSD8 인코더·디코더 예제 (encdec_example.md)
+
+---
 **Disclaimer** : 본 문서는 한국어(KO) 버전이 원본이며, 번역 과정에서 발생할 수 있는 문제나 모호한 부분은 한국어 버전을 참조하시기 바랍니다.
 
 ---
 
-
-# UE8M0 인코더·디코더 예제 (encdec_example.md)
-
 [KO](encdec_example.md) | [EN](encdec_example_en.md) | [ZH](encdec_example_zh.md)
 
+---
 
-이 문서는 UE8M0-Neuron-Quant 알고리즘을 이해하기 위한 **샘플 파라미터 기본값**과  
+이 문서는 TFSD8-Neuron-Quant 알고리즘을 이해하기 위한 **샘플 파라미터 기본값**과  
 **시계열 입력 → 인코딩(토큰) → 디코딩(복원)** 과정을 **20개 이상**의 데이터로 상세히 보여줍니다.
 
 > 목표: 작은 변화는 **ΣΔ 누적 후 ±1 펄스 발화**, 큰 변화는 **MAX/MIN 이벤트**,  
