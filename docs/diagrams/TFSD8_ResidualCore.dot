@@ -1,0 +1,17 @@
+digraph TFSD8_ResidualCore {
+  graph [rankdir=TB, fontsize=24, labelloc="t", label="TFSD8 — Residual Feedback Core (Detail)"];
+  node  [shape=rectangle, style="rounded,filled", fillcolor="#f7f7f7", color="#555555", fontname="Arial"];
+  edge  [color="#444444", arrowsize=0.8];
+
+  QuantOut [label="Quantized Value d̂\n(FP8/INT8)", fillcolor="#fff7e6"];
+  Dequant  [label="Dequantize (approx)", fillcolor="#f0fff4"];
+  Sub      [label="Subtract\nresidual = d - d̂", fillcolor="#f0fff4"];
+  Accum    [label="Residual Accumulator\n(BF16/FP32)", fillcolor="#f0fff4"];
+  Clip     [label="Residual Clip/ScaleGuard\n(optional)", fillcolor="#fff7e6"];
+  ToTime   [label="→ Temporal Gating", fillcolor="#e6fffb"];
+
+  InputRef [label="Reference d\n(FP16/FP32)", fillcolor="#e8f0fe"];
+
+  InputRef -> Sub;
+  QuantOut -> Dequant -> Sub -> Accum -> Clip -> ToTime;
+}

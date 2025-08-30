@@ -1,11 +1,9 @@
+# TFSD8‑Neuron‑Quant 算法 (v0.1.5)
+
 **免责声明**：本文件的韩文 (KO) 版本为原始版本。  
 如在翻译中出现问题或歧义，请参考韩文版本。
 
 ---
-
-
-# UE8M0‑Neuron‑Quant 算法 (v0.1.3)
-
 
 [KO](algorithm_full_ko.md) | [EN](algorithm_full_en.md) | [ZH](algorithm_full_zh.md)
 
@@ -18,13 +16,13 @@
 - **指尖细触**：轻擦表面会感觉到非常细微的凹凸变化；
 - **苍蝇落在皮肤上**：微弱触觉因“瞬时变化”而被明显感知。
 
-UE8M0‑Neuron‑Quant 将该原理映射到数字逻辑，实现**低功耗、事件驱动编码**。
+TFSD8‑Neuron‑Quant 将该原理映射到数字逻辑，实现**低功耗、事件驱动编码**。
 
 ---
 ## 2) 术语与令牌（先定义）
 - **b**：基线，采用 EMA 更新；  
 - **d = x − b**：差分；  
-- **E**：UE8M0 的 2^E 量级（对数尺度）；  
+- **E**：TFSD8 的 2^E 量级（对数尺度）；  
 - **r**：ΣΔ 累加器（残差/微小变化累积）。
 
 **令牌**
@@ -35,12 +33,12 @@ UE8M0‑Neuron‑Quant 将该原理映射到数字逻辑，实现**低功耗、�
 
 ---
 ## 3) 核心概念
-### 3.1 UINT8 vs FP8 vs UE8M0
+### 3.1 UINT8 vs FP8 vs TFSD8
 - **UINT8**：0–255 固定范围；
 - **FP8**：常见两种格式  
   - **E4M3** 精度高、范围窄；  
   - **E5M2** 范围宽、精度低；
-- **UE8M0 (2^E)**：按 2 的幂缩放 → **移位实现、无需乘法器**。FP8 负责精度，UE8M0 负责动态范围。
+- **TFSD8 (2^E)**：按 2 的幂缩放 → **移位实现、无需乘法器**。FP8 负责精度，UE8M0 负责动态范围。
 
 ### 3.2 误差反馈
 量化后累加 `residual = d − d̂` 到 r，避免长期偏置；等价于**抖动/ΣΔ 误差反馈**，随时间释放 ±1 脉冲。
@@ -79,10 +77,16 @@ state:
 
 ---
 ## 7) 图示
-- `diagrams/ue8m0_overview_auto_zh.svg` 
-  ![ue8m0_overview](diagrams/ue8m0_overview_auto_zh.svg) 
-- `diagrams/ue8m0_sync_auto_vertical_zh.svg`
-  ![ue8m0_sync_auto](diagrams/ue8m0_sync_auto_vertical_zh.svg)
+
+
+- Overview/Temporal/Error Feedback/Scale Flow
+
+   ![TFSD8 Master overview](diagrams/TFSD8_MasterOverview.svg) 
+
+- Encoder / Decoder Token/Sync Stream
+  
+  ![TFSD8_sync_auto](diagrams/ue8m0_sync_auto_vertical_zh.svg)
+
 
 ## 8) 编码器–解码器示例
 - [编码器/解码器 示例](encdec_example_zh.md)

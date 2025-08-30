@@ -1,0 +1,20 @@
+digraph TFSD8_Kernels {
+  graph [rankdir=TB, fontsize=24, labelloc="t", label="TFSD8 — Compute Kernels (Detail)"];
+  node  [shape=rectangle, style="rounded,filled", fillcolor="#f7f7f7", color="#555555", fontname="Arial"];
+  edge  [color="#444444", arrowsize=0.8];
+
+  EventIn   [label="Event Stream\n(±1 pulses)", fillcolor="#e6fffb"];
+  PulseGEMM [label="PulseGEMM\n(Event-driven GEMM)", fillcolor="#e6fffb"];
+  GateConv  [label="GateConv\n(Event-driven Conv)", fillcolor="#e6fffb"];
+  PulseAttn [label="PulseAttn\n(Event-gated Attention)", fillcolor="#e6fffb"];
+  Merge     [label="Merge/Reduce\n(ops fusion, tiling)", fillcolor="#fff7e6"];
+  Output    [label="Output Tensor", fillcolor="#e8f0fe"];
+
+  EventIn   -> PulseGEMM;
+  EventIn   -> GateConv;
+  EventIn   -> PulseAttn;
+  PulseGEMM -> Merge;
+  GateConv  -> Merge;
+  PulseAttn -> Merge;
+  Merge     -> Output;
+}

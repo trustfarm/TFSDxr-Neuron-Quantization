@@ -1,11 +1,11 @@
-digraph UE8M0_OVERVIEW_AUTO {
+digraph TFSD8_OVERVIEW_AUTO {
   graph  [rankdir=TB, bgcolor="#F9F9F9", nodesep=0.7, ranksep=1.0, fontname="Helvetica", overlap=false];
   node   [shape=box, style="rounded,filled", fillcolor="#EAF3FF", color="#2C6EBB",
           penwidth=1.4, fontname="Helvetica", fontsize=13, margin="0.10,0.06"];
   edge   [color="#333333", arrowsize=0.8, penwidth=1.3, fontname="Helvetica", fontsize=11];
 
   subgraph cluster_main {
-    label="UE8M0 시간 흐름"; style="filled,rounded"; color="#E6E6E6"; fontcolor="#444";
+    label="TFSD8 시간 흐름"; style="filled,rounded"; color="#E6E6E6"; fontcolor="#444";
     start [label="시작"];
     inb   [label="입력 x 와\n기준 b", shape=plain, fontcolor="#000000"];
     diff  [label="차분 d = x - b"];

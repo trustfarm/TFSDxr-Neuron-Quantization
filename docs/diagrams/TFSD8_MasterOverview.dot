@@ -1,0 +1,23 @@
+digraph TFSD8_Master {
+  graph [rankdir=TB, fontsize=26, labelloc="t", label="TFSD8 (Time Feedback Sigma-Delta) — Master Overview"];
+  node  [shape=rectangle, style="rounded,filled", fillcolor="#f7f7f7", color="#555555", fontname="Arial"];
+  edge  [color="#444444", arrowsize=0.8];
+
+  // Layers (top to bottom)
+  Input   [label="Input Tensor\n(FP32/FP16)", fillcolor="#e8f0fe"];
+  Front   [label="Front-End:\nScaleGuard • FormatSelect • Quant", fillcolor="#fff7e6"];
+  Resid   [label="Residual Feedback Core:\nDequant • Sub • Accum", fillcolor="#f0fff4"];
+  TimeG   [label="Temporal Gating:\nDebounce(T_silence) • Emit(T_emit) • Refractory(T_refractory)", fillcolor="#fef6ff"];
+  Kernels [label="Compute Kernels:\nPulseGEMM • GateConv • PulseAttn", fillcolor="#e6fffb"];
+  Output  [label="Output Tensor\n(GEMM/Conv/Attn)", fillcolor="#e8f0fe"];
+
+  // Flow
+  Input -> Front -> Resid -> TimeG -> Kernels -> Output;
+
+  // Side control
+  Params  [label="Params\n{E4M3/E5M2, W8A8}\n{BF16/FP32 accum}\n{T_silence, T_emit, T_refractory}", fillcolor="#f5f5f5"];
+  Stats   [label="Stats/Telemetry\n• event rate\n• overflow/underflow\n• scale update", fillcolor="#f5f5f5"];
+  Params -> Front   [style=dashed];
+  Params -> TimeG   [style=dashed];
+  Stats  -> Params  [style=dashed, label="adapt/update"];
+}

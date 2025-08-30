@@ -1,4 +1,4 @@
-digraph UE8M0_SYNC_AUTO_VERTICAL {
+digraph TFSD8_SYNC_AUTO_VERTICAL {
   graph  [rankdir=TB, bgcolor="#F9F9F9", nodesep=0.9, ranksep=1.1, fontname="Helvetica", overlap=false];
   node   [shape=box, style="rounded,filled", fillcolor="#EAF3FF", color="#2C6EBB",
           penwidth=1.4, fontname="Helvetica", fontsize=13, margin="0.10,0.06"];
@@ -10,7 +10,7 @@ digraph UE8M0_SYNC_AUTO_VERTICAL {
     e_b  [label="b(EMA)"];
     e_d  [label="d = x - b"];
     e_q  [label="FP8 量化"];
-    e_E  [label="E(UE8M0)"];
+    e_E  [label="E(TFSD8)"];
   }
   subgraph cluster_tok {
     label="令牌流"; style="rounded"; color="#DDDDDD"; fontcolor="#444";

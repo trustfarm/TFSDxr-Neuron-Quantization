@@ -1,9 +1,11 @@
+
+# TFSD8‑Neuron‑Quant Algorithm (v0.1.5)
+
+---
 **Disclaimer**: The Korean (KO) version of this document is the original reference. In case of any translation issues or ambiguities, please refer to the Korean version.
 
 ---
 
-
-# UE8M0‑Neuron‑Quant Algorithm (v0.1.3)
 
 [KO](algorithm_full_ko.md) | [EN](algorithm_full_en.md) | [ZH](algorithm_full_zh.md)
 
@@ -11,18 +13,19 @@
 This document combines **intuitive exposition (examples/flow)** and **technical grounding (math/considerations)** for both general readers and engineers.
 
 ---
+
 ## 1) Introduction: Why differences & events
 Humans respond more to **relative change (difference)** and **events (extrema/saturation)** than absolute levels.
 - **Fine touch**: gently rubbing a surface reveals tiny ridges as changes.
 - **A fly landing**: a tiny contact is perceived strongly due to sudden onset.
 
-UE8M0‑Neuron‑Quant maps this principle into digital logic for **low‑power, event‑based encoding**.
+TFSD8‑Neuron‑Quant maps this principle into digital logic for **low‑power, event‑based encoding**.
 
 ---
 ## 2) Terms & Tokens (first)
 - **b**: baseline tracked by EMA;  
 - **d = x − b**: difference;  
-- **E**: UE8M0 scale exponent (2^E);  
+- **E**: TFSD8 scale exponent (2^E);  
 - **r**: ΣΔ accumulator (residual / micro‑changes).
 
 **Tokens**
@@ -33,12 +36,12 @@ UE8M0‑Neuron‑Quant maps this principle into digital logic for **low‑power,
 
 ---
 ## 3) Key ideas
-### 3.1 UINT8 vs FP8 vs UE8M0
+### 3.1 UINT8 vs FP8 vs TFSD8
 - **UINT8**: 0–255; fixed range
 - **FP8**: two formats commonly used  
   - **E4M3** higher precision, narrower range  
   - **E5M2** wider range, lower precision
-- **UE8M0 (2^E)**: scaling by powers of two → **shift‑based, multiplier‑free**. FP8’s mantissa handles precision; UE8M0 handles dynamic range.
+- **TFSD8 (2^E)**: scaling by powers of two → **shift‑based, multiplier‑free**. FP8’s mantissa handles precision; UE8M0 handles dynamic range.
 
 ### 3.2 Error‑feedback
 After quantization, accumulate `residual = d − d̂` into r to avoid long‑term bias. This acts like **dithering / ΣΔ error feedback**, emitting ±1 pulses over time.
@@ -113,11 +116,18 @@ Share the same E updates via `SCALE(±1)`, reconstruct `NORM(q)` as `deFP8(q) * 
 - Use cases: event cameras/tactile, IoT, embedded audio/vibration
 
 ---
+
 ## 7) Diagrams
-- `diagrams/ue8m0_overview_auto_en.svg` 
-  ![ue8m0_overview](diagrams/ue8m0_overview_auto_en.svg) 
-- `diagrams/ue8m0_sync_auto_vertical_en.svg`
-  ![ue8m0_sync_auto](diagrams/ue8m0_sync_auto_vertical_en.svg)
+
+
+- Overview/Temporal/Error Feedback/Scale Flow
+  
+   ![TFSD8 Master overview](diagrams/TFSD8_MasterOverview.svg) 
+
+- Encoder / Decoder Token/Sync Stream
+  
+  ![TFSD8_sync_auto](diagrams/ue8m0_sync_auto_vertical_en.svg)
+
 
 ## 8) Encoder–Decoder Example
 - [Encoder/Decoder Example](encdec_example_en.md)

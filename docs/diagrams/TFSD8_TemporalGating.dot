@@ -1,0 +1,18 @@
+digraph TFSD8_TemporalGating {
+  graph [rankdir=TB, fontsize=24, labelloc="t", label="TFSD8 — Temporal Gating (Detail)"];
+  node  [shape=rectangle, style="rounded,filled", fillcolor="#f7f7f7", color="#555555", fontname="Arial"];
+  edge  [color="#444444", arrowsize=0.8];
+
+  AccumIn   [label="Residual Accumulator\n(BF16/FP32)", fillcolor="#f0fff4"];
+  Debounce  [label="Debounce\nT_silence", fillcolor="#fef6ff"];
+  EmitGate  [label="Emit Gate\nT_emit", fillcolor="#fef6ff"];
+  Refract   [label="Refractory\nT_refractory", fillcolor="#fef6ff"];
+  PulseOut  [label="Event Stream (±1 pulses)\nwith timestamps", fillcolor="#e6fffb"];
+
+  Params    [label="Params\n{T_silence, T_emit, T_refractory}", fillcolor="#f5f5f5"];
+
+  AccumIn -> Debounce -> EmitGate -> Refract -> PulseOut;
+  Params  -> Debounce [style=dashed];
+  Params  -> EmitGate [style=dashed];
+  Params  -> Refract  [style=dashed];
+}
