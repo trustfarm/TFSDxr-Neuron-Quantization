@@ -15,7 +15,7 @@ By combining a `2^E` shift-only scale with FP8 mantissa, it covers a wide dynami
 ### Codename Update Notice
 
 The algorithm formerly known as UE8M0
-is now renamed to **TFSD8** / **TFSD16** ***(Time Feedback Sigma-Delta Quantization)***.
+is now renamed to **TFSD8** / **TFSD4(UE4T)**  / **TFSD16** , ***(Time Feedback Sigma-Delta Quantization)***.
 
 ### Preface
 
