@@ -59,7 +59,9 @@ TFSD8 Details
 - Small changes: ΣΔ ±1, Large changes: MAX/MIN, Medium: NORM_ESC+payload  
 - Hardware-optimized with no multipliers required  
 
-👉 [UE4T v0.3 Full Documentation](docs/ue4t_format_v.0.3_en.md)
+- TFSD4 Based NeuroMorphic Chip Architecture
+  
+👉 [TFSD4(UE4T) v0.3 Full Documentation](docs/ue4t_format_v.0.3_en.md)
 
 ---
 

@@ -63,7 +63,9 @@ TFSD8 Details
 - 작은 변화: ΣΔ ±1, 큰 변화: MAX/MIN, 중간: NORM_ESC+payload  
 - 곱셈기 없는 하드웨어 구현 최적화  
 
-👉 [UE4T v0.3 상세 문서](docs/ue4t_format_v.0.3.md)
+- TFSD4 를 활용한 NeuroMorphic Chip Architecture
+  
+👉 [TFSD4(UE4T) v0.3 상세 문서](docs/ue4t_format_v.0.3.md)
 
 ---
 
