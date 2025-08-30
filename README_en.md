@@ -1,9 +1,9 @@
+# TFSD8-Neuron-Quant (v0.1.5)
+
+
 **Disclaimer**: The Korean (KO) version of this document is the original reference. In case of any translation issues or ambiguities, please refer to the Korean version.
 
 ---
-
-
-# TFSD8-Neuron-Quant (v0.1.5)
 
 [KO](README.md) | [EN](README_en.md) | [ZH](README_zh.md)
 
@@ -54,7 +54,7 @@ TFSD8 Details
 
 ---
 
-**UE4T** is a lightweight encoding scheme that extends the **TFSD8 philosophy** into a **4-bit format**.  
+**TFSD4(UE4T)** is a lightweight encoding scheme that extends the **TFSD8 philosophy** into a **4-bit format**.  
 - 2^E scaling (shift) + ΣΔ events + 4-bit token map  
 - Small changes: ΣΔ ±1, Large changes: MAX/MIN, Medium: NORM_ESC+payload  
 - Hardware-optimized with no multipliers required  
@@ -65,13 +65,13 @@ TFSD8 Details
 
 ---
 
-## 🔥 UE4T: The Key to Training-Capable NeuroSoCs
+## 🔥 TFSD4(UE4T): The Key to Training-Capable NeuroSoCs
 
 Conventional neuromorphic chips (SNN-based) only encode **spike events (0/1)** and **timing**,  
 which makes precise training (learning) very limited.  
 ANNs can train but consume too much power/resources.
 
-UE4T overcomes both limitations at once.
+TFSD4(UE4T) overcomes both limitations at once.
 
 ### ✅ Differentiation
 - **4-bit tokens to encode spike intensity**
@@ -87,7 +87,7 @@ UE4T overcomes both limitations at once.
 - Extensible to **large-scale CNN / Transformer models**
 
 ### 📊 Comparison
-| Category | Conventional SNN | ANN | **UE4T** |
+| Category | Conventional SNN | ANN | **TFSD4(UE4T)** |
 |----------|------------------|-----|----------|
 | Representation | Spike=0/1, Timing | FP32/INT8 | **Spike+Intensity (4bit+Scale)** |
 | Training | STDP, local rules | Gradient Descent | **Gradient Descent possible** |
@@ -97,12 +97,12 @@ UE4T overcomes both limitations at once.
 
 ---
 
-> **UE4T is the first 4-bit event format that quantifies spike intensity.**  
+> **TFSD4(UE4T) is the first 4-bit event format that quantifies spike intensity.**  
 > This enables the world’s first **training-capable NeuroSoC** beyond inference-only neuromorphic chips.
 
 ---
 
-## ✨ What’s UE8M0?
+## ✨ What’s TFSD8?
 - **Differential**: remove baseline `b` (EMA) from input `x` → `d = x - b`  
 - **Event-based**: small changes → ΣΔ ±1 pulse, large changes → **MAX/MIN** events  
 - **Shift-only scale**: `E` represents power-of-two scaling → no hardware multipliers needed  

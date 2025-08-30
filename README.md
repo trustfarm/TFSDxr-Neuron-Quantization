@@ -1,10 +1,9 @@
+# TFSD8-Neuron-Quant (v0.1.5)
+
 **Disclaimer** : 본 문서는 한국어(KO) 버전이 원본이며, 번역 과정에서 발생할 수 있는 문제나 모호한 부분은 한국어 버전을 참조하시기 바랍니다.
 
 
 ---
-
-
-# TFSD8-Neuron-Quant (v0.1.5)
 
 
 [KO](README.md) | [EN](README_en.md) | [ZH](README_zh.md)
@@ -58,23 +57,23 @@ TFSD8 Details
 
 ---
 
-**UE4T**는 **TFSD8 철학**을 **4비트** 포맷으로 확장한 경량 부호화 방식입니다.  
+**TFSD4(UE4T)**는 **TFSD8 철학**을 **4비트** 포맷으로 확장한 경량 부호화 방식입니다.  
 - 2^E 스케일 (shift) + ΣΔ 이벤트 + 4bit 토큰 맵  
 - 작은 변화: ΣΔ ±1, 큰 변화: MAX/MIN, 중간: NORM_ESC+payload  
 - 곱셈기 없는 하드웨어 구현 최적화  
 
-- TFSD4 를 활용한 NeuroMorphic Chip Architecture
+- TFSD4 를 활용한 **NeuroMorphic Chip Architecture**
   
 👉 [TFSD4(UE4T) v0.3 상세 문서](docs/ue4t_format_v.0.3.md)
 
 ---
 
-## 🔥 UE4T: Training 가능한 NeuroSoC의 열쇠
+## 🔥 TFSD4(UE4T): Training 가능한 NeuroSoC의 열쇠
 
 기존 뉴로모픽 칩(SNN 기반)은 **스파이크 여부(0/1)**와 **발화 시점**만으로 정보를 표현하기 때문에,  
 정밀한 학습(Training)에는 한계가 있었습니다. ANN은 학습은 가능하지만 전력/자원 소모가 너무 큽니다.
 
-UE4T는 이 두 가지의 한계를 동시에 극복합니다.
+TFSD4(UE4T)는 이 두 가지의 한계를 동시에 극복합니다.
 
 ### ✅ 차별화 포인트
 - **4bit 토큰으로 스파이크 강도(intensity) 표현**
@@ -85,12 +84,13 @@ UE4T는 이 두 가지의 한계를 동시에 극복합니다.
 - 곱셈기 없이(Shift 기반) FP8 수준의 스케일링 달성
 
 ### 🧠 학습(Training) 가능
+
 - 스파이크가 단순한 0/1 이벤트가 아니라 **float-like 값**으로 활용 가능  
 - 기존 SNN에선 불가능했던 **Gradient Descent 기반 학습** 가능  
 - **대규모 CNN / Transformer 모델까지 학습 확장 가능**
 
 ### 📊 비교
-| 구분 | 기존 SNN | ANN | **UE4T** |
+| 구분 | 기존 SNN | ANN | **TFSD4(UE4T)** |
 |------|----------|-----|----------|
 | 표현 | Spike=0/1, Timing | FP32/INT8 등 | **Spike+강도(4bit+Scale)** |
 | 학습 | STDP, 국소 규칙 | Gradient Descent | **Gradient Descent 가능** |
@@ -100,15 +100,15 @@ UE4T는 이 두 가지의 한계를 동시에 극복합니다.
 
 ---
 
-> **UE4T는 “스파이크 강도”를 정량적으로 표현하는 최초의 4bit 이벤트 포맷**입니다.  
+> **TFSD4(UE4T)는 “스파이크 강도”를 정량적으로 표현하는 최초의 4bit 이벤트 포맷**입니다.  
 > 이를 통해 기존 뉴로모픽이 불가능했던 **학습 가능한 NeuroSoC**를 실현합니다.
 
 ---
 
-## ✨ What’s UE8M0?
+## ✨ What’s TFSD8?
 - **Differential**: 입력 `x`에서 기준 `b`(EMA) 제거 → `d = x - b`  
 - **Event-based**: 작은 변화는 ΣΔ ±1 pulse, 큰 변화는 **MAX/MIN** 이벤트  
-- **Shift-only scale**: UE8M0의 `E`는 2의 거듭제곱 스케일 → 하드웨어곱셈연산 불필요  
+- **Shift-only scale**: TFSD8의 `E`는 2의 거듭제곱 스케일 → 하드웨어곱셈연산 불필요  
 - **FP8 mantissa**: 정밀도 담당(E4M3/E5M2)
 
 ---
