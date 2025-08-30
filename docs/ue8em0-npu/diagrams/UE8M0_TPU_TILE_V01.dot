@@ -1,0 +1,23 @@
+digraph UE8M0_TPU_TILE_V01 {
+  label="Tensor Core Tile v0.1"; labelloc="t"; fontsize=18;
+  rankdir=TB; splines=ortho; nodesep=0.7; ranksep=1.0; fontname="Helvetica";
+  node[shape=box,style="rounded,filled",fillcolor="#F2F8FF",color="#2C6EBB",penwidth=1.2,fontname="Helvetica"];
+  edge[color="#333333",arrowsize=0.8,penwidth=1.1];
+
+  spm_in[label="Local SPM Ports",fillcolor="#E6F2FF"];
+  sched[label="Tile Scheduler",fillcolor="#E6E6E6"];
+
+  subgraph cluster_array {
+    label="Systolic Array"; color="#CCE5FF"; style="rounded,filled";
+    row[label="Row Broadcast (q_a,E_a)",fillcolor="#FFFFFF"];
+    col[label="Col Broadcast (q_w,E_w)",fillcolor="#FFFFFF"];
+    pe[label="PE:  E_adder + MantissaUnit(8x8 MUL/LUT)\n      + Shifter(<<E_sum) + ACC(24b)",fillcolor="#FFFFFF"];
+  }
+
+  scale[label="E Header Buffer",fillcolor="#FFF7E6"];
+  post[label="Activation/Norm local",fillcolor="#EAF7EA"];
+
+  spm_in -> sched -> {row col};
+  scale -> {row col} [style=dashed,label="E sync"];
+  row -> pe; col -> pe; pe -> post;
+}

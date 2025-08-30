@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="300">
+  <rect x="10" y="10" width="780" height="280" fill="#f5f5f5" stroke="#333" stroke-width="2" rx="15"/>
+  <text x="400" y="40" font-size="20" text-anchor="middle" font-family="Helvetica">TFusionTensor v0.2 PCIe Card</text>
+
+  <rect x="40" y="80" width="150" height="60" fill="#cce5ff" stroke="#2c6ebb"/>
+  <text x="115" y="115" text-anchor="middle" font-size="14">PCIe Gen4/5 x16</text>
+
+  <rect x="220" y="80" width="160" height="60" fill="#dff7e7" stroke="#2c6ebb"/>
+  <text x="300" y="110" text-anchor="middle" font-size="14">TFusionTensor Core</text>
+
+  <rect x="410" y="80" width="140" height="60" fill="#ffe5cc" stroke="#2c6ebb"/>
+  <text x="480" y="105" text-anchor="middle" font-size="14">TFusionVcache</text>
+  <text x="480" y="120" text-anchor="middle" font-size="12">(64MB, Dynamic)</text>
+
+  <rect x="580" y="80" width="180" height="60" fill="#e6e6e6" stroke="#2c6ebb"/>
+  <text x="670" y="115" text-anchor="middle" font-size="14">DDR (1–2 TB ECC)</text>
+
+  <rect x="40" y="170" width="150" height="50" fill="#e0ccff" stroke="#2c6ebb"/>
+  <text x="115" y="200" text-anchor="middle" font-size="13">LAN 2.5/10 GbE</text>
+
+  <rect x="220" y="170" width="160" height="50" fill="#fff2cc" stroke="#2c6ebb"/>
+  <text x="300" y="200" text-anchor="middle" font-size="13">Flash / Boot ROM</text>
+
+  <rect x="410" y="170" width="160" height="50" fill="#ffcccc" stroke="#2c6ebb"/>
+  <text x="490" y="200" text-anchor="middle" font-size="13">Remote Mgmt (SMBus)</text>
+</svg>

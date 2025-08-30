@@ -1,0 +1,15 @@
+digraph CACHE_BLOCK_DFLOW_TFV {
+  label="TFusionVcache — Block Data Flow";
+  labelloc="t"; fontsize=18;
+  rankdir=TB; splines=ortho; nodesep=0.9; ranksep=1.0; fontname="Helvetica";
+  node[shape=box,style="rounded,filled",fillcolor="#EAF3FF",color="#2C6EBB"];
+
+  req[label="Requests (KV/Tensor)"];
+  fe[label="Classifier/Arbiter"];
+  banks[label="Shared Banks 64MB"];
+  spm[label="SPM"]; dram[label="DDR/HBM"]; host[label="Host DMA"];
+  resp[label="Responses"];
+  req -> fe -> banks -> {spm resp};
+  {spm} -> req [style=dashed,label="refill"];
+  {dram host} -> fe [style=dashed,label="miss service"];
+}

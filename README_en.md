@@ -3,17 +3,49 @@
 ---
 
 
-# UE8M0-Neuron-Quant (v0.1.4a)
+# TFSD8-Neuron-Quant (v0.1.5)
 
 [KO](README.md) | [EN](README_en.md) | [ZH](README_zh.md)
 
-**UE8M0** is a low-power quantization/encoding scheme focused on *differentials* and *events*.  
+**TFSD8** is a low-power quantization/encoding scheme focused on *differentials* and *events*.  
 By combining a `2^E` shift-only scale with FP8 mantissa, it covers a wide dynamic range **without multipliers** (only shifts).
 
 ---
 
-## 🧭 Quick links
-**Docs:** [EN](docs/algorithm_full_en.md)  
+### Codename Update Notice
+
+The algorithm formerly known as UE8M0
+is now renamed to **TFSD8** / **TFSD16** ***(Time Feedback Sigma-Delta Quantization)***.
+
+### Preface
+
+> The codenames TFSD8 / TFSD16 are not mere abbreviations.
+In the analog era, pioneering researchers introduced the principles of ΣΔ (Sigma-Delta) modulation and Residual Feedback,
+providing a foundation for compact yet accurate data representation.
+> 
+> We <ins>**honor these early contributions**</ins> by integrating a modern concept:
+time-based adaptive gating (Windowing & Refractory Control).
+This fusion has led to a new quantization method tailored for contemporary tensor computation environments.
+> 
+> Reflecting this philosophy, we have named our algorithm TFSD8 / TFSD16 (Time Feedback Sigma-Delta Quantization).
+It embodies the wisdom of analog ΣΔ, the adaptivity of temporal coding today, and the extensibility for future tensor operations.
+> 
+> Furthermore, the letter "T" signifies not only Time / Temporal / Tensor,
+but also represents the heritage of TrustFarm, the foundation of this project.
+
+---
+
+![TFSD8_block_diagram](TFSD8_block_diagram.svg)
+
+---
+
+## 🧭 Algorithm Details Quick links
+
+TFSD8 Details 
+
+**Docs:** [TFSD8 Details KO](docs/algorithm_full_ko.md) · [TFSD8 Details EN](docs/algorithm_full_en.md) · [TFSD8 Details ZH](docs/algorithm_full_zh.md)
+
+
 **Diagrams (SVG):**  
 - Overview: `docs/diagrams/ue8m0_overview_auto_en.dot`  
 - Sync (vertical): `docs/diagrams/ue8m0_sync_auto_vertical_en.dot`  
@@ -22,7 +54,7 @@ By combining a `2^E` shift-only scale with FP8 mantissa, it covers a wide dynami
 
 ---
 
-**UE4T** is a lightweight encoding scheme that extends the **UE8M0 philosophy** into a **4-bit format**.  
+**UE4T** is a lightweight encoding scheme that extends the **TFSD8 philosophy** into a **4-bit format**.  
 - 2^E scaling (shift) + ΣΔ events + 4-bit token map  
 - Small changes: ΣΔ ±1, Large changes: MAX/MIN, Medium: NORM_ESC+payload  
 - Hardware-optimized with no multipliers required  

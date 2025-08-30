@@ -1,0 +1,28 @@
+digraph CACHE_DFLOW_TFV {
+  label="TFusionVcache — Data Flow View";
+  labelloc="t"; fontsize=18;
+  rankdir=TB; splines=ortho; nodesep=0.9; ranksep=1.0; fontname="Helvetica";
+  node[shape=box,style="rounded,filled",fillcolor="#EAF3FF",color="#2C6EBB"];
+
+  subgraph cluster_src { label="Sources"; color="#FFCCCC";
+    host[label="Host DMA/Queue"]; dram[label="External Memory
+DDR/HBM"]; 
+  }
+  subgraph cluster_cache { label="TFusionVcache Subsystem"; color="#FFF0B3";
+    fe[label="Cache Front-End
+(Classifier/Arbiter/QoS)"];
+    banks[label="Shared Banks 64MB
+(16-way, banked)"];
+  }
+  subgraph cluster_spm { label="On-chip Scratchpad"; color="#DFF7E7";
+    spm[label="SPM Banks
+(ping-pong/crossbar)"];
+  }
+  subgraph cluster_tiles { label="Compute"; color="#CCE5FF";
+    tiles[label="Tensor Core Tiles"]; post[label="Post Ops"]; codec[label="Decoder/Encoder"];
+  }
+  host -> fe; dram -> fe;
+  fe -> banks; banks -> spm;
+  spm -> tiles -> post -> codec;
+  codec -> spm [style=dashed,label="scale/calib"];
+}

@@ -1,0 +1,43 @@
+digraph TFusionTensor_TPU_TOP_V02 {
+  label="TFusionTensor_TPU SoC Top v0.2 (DDR/HBM + TFusionVCache(KV/Tensor)"; labelloc="t"; fontsize=18;
+  rankdir=TB; splines=ortho; nodesep=0.9; ranksep=1.1; fontname="Helvetica";
+  node[shape=box,style="rounded,filled",fillcolor="#EAF3FF",color="#2C6EBB"];
+
+  subgraph cluster_host { label="Host"; color="#FFCCCC";
+    pcie[label="PCIe/CXL"]; dma[label="DMA/Queue"]; rv[label="RISC-V Cores\n(RV64GCV + AME hooks)"];
+    pcie -> dma -> rv;
+  }
+
+  subgraph cluster_mem { label="External Memory"; color="#FFDAB9";
+    ddr[label="DDR5 RDIMM x8\n(512b, up to 2TB)"];
+    lpddr[label="LPDDR5X (Alt)"];
+    hbm[label="HBM (Option)\n>=3.5–7 TB/s"];
+  }
+
+  subgraph cluster_cache { label="TFusionVCache"; color="#FFF0B3";
+    kv[label="KV-Cache per-chan 64–128MB"];
+    tcache[label="Tensor-Cache per-chan 64–128MB\n(prefetch/stream)"];
+  }
+
+  subgraph cluster_spm { label="On-chip Scratchpad"; color="#DFF7E7";
+    spm[label="SPM Banks (multi-bank, ping-pong, crossbar)"];
+  }
+
+  subgraph cluster_codec { label="TFusion Codec Cluster"; color="#E6E6E6";
+    enc[label="Encoder"]; dec[label="Decoder"]; scale[label="Scale Sync/Calib"];
+  }
+
+  subgraph cluster_tiles { label="TFTensor Core Tiles"; color="#CCE5FF";
+    tile0[label="Tile[0] 128x128"]; tile1[label="Tile[1] 128x128"]; dots[label="..."]; 
+    tileN[label="Tile[N] 128x128"];
+  }
+
+  subgraph cluster_post { label="Post Ops"; color="#E0E0FF";
+    act[label="Activation/ReLU/GELU LUT"]; norm[label="Layer/GroupNorm"];
+  }
+
+  {pcie dma rv} -> {kv tcache} -> spm;
+  {ddr lpddr hbm} -> {kv tcache};
+  enc -> spm; scale -> {tile0 tile1 tileN};
+  spm -> {tile0 tile1 dots tileN} -> act -> norm -> dec;
+}

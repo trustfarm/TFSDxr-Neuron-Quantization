@@ -1,0 +1,80 @@
+
+digraph TFSD8 {
+  graph [rankdir=TB, fontsize=24, labelloc="t", label="TFSD8 (Time Feedback Sigma-Delta) — Block Diagram"];
+  node  [shape=rectangle, style="rounded,filled", fillcolor="#f7f7f7", color="#555", fontname="Arial"];
+  edge  [color="#444", arrowsize=0.8];
+
+  subgraph cluster_io {
+    label="I/O";
+    style="rounded,dashed"; color="#bbbbbb"; fontsize=18;
+    Input   [label="Input Tensor\n(FP32/FP16)", fillcolor="#e8f0fe"];
+    Output  [label="Output Tensor\n(GEMM/Conv/Attn)", fillcolor="#e8f0fe"];
+  }
+
+  subgraph cluster_front {
+    label="Front-End (Scaling & Quantization)";
+    style="rounded,dashed"; color="#bbbbbb"; fontsize=18;
+    ScaleGuard [label="ScaleGuard\n• dynamic scale / clip\n• per-tensor/per-channel", fillcolor="#fff7e6"];
+    FormatSel  [label="Format Select\nE4M3 / E5M2", fillcolor="#fff7e6"];
+    Quant      [label="Quantizer\n(FP8 / INT8)", fillcolor="#fff7e6"];
+  }
+
+  subgraph cluster_residual {
+    label="Residual Feedback Core";
+    style="rounded,dashed"; color="#bbbbbb"; fontsize=18;
+    Dequant   [label="Dequant (approx)", fillcolor="#f0fff4"];
+    Sub       [label="Subtract\nresidual = d - d̂", fillcolor="#f0fff4"];
+    Accum     [label="Residual Accumulator\n(BF16/FP32)", fillcolor="#f0fff4"];
+  }
+
+  subgraph cluster_time {
+    label="Temporal Gating";
+    style="rounded,dashed"; color="#bbbbbb"; fontsize=18;
+    Debounce  [label="Debounce\nT_silence", fillcolor="#fef6ff"];
+    EmitGate  [label="Emit Gate\nT_emit", fillcolor="#fef6ff"];
+    Refractory[label="Refractory\nT_refractory", fillcolor="#fef6ff"];
+  }
+
+  subgraph cluster_kernels {
+    label="Compute Kernels";
+    style="rounded,dashed"; color="#bbbbbb"; fontsize=18;
+    PulseGEMM [label="PulseGEMM\n(GEMM with event stream)", fillcolor="#e6fffb"];
+    GateConv  [label="GateConv\n(Conv with event stream)", fillcolor="#e6fffb"];
+    Attention [label="PulseAttn\n(Attention w/ gating)", fillcolor="#e6fffb"];
+  }
+
+  subgraph cluster_monitor {
+    label="Monitor & Control";
+    style="rounded,dashed"; color="#bbbbbb"; fontsize=18;
+    Stats     [label="Stats/Telemetry\n• event rate\n• overflow/underflow\n• scale update", fillcolor="#f5f5f5"];
+    Params    [label="Params\n{T_silence, T_emit, T_refractory}\n{E4M3/E5M2, W8A8}\n{BF16/FP32 accum}", fillcolor="#f5f5f5"];
+  }
+
+  // Connections
+  Input -> ScaleGuard -> FormatSel -> Quant;
+  Quant -> Dequant -> Sub -> Accum;
+
+  // Feedback loop back into gating & emission
+  Accum -> Debounce -> EmitGate -> Refractory;
+
+  // Event stream fan-out to kernels
+  Refractory -> PulseGEMM [label="event stream (±1 pulses)"];
+  Refractory -> GateConv  [label="event stream"];
+  Refractory -> Attention [label="event stream"];
+
+  // Kernel outputs to Output
+  PulseGEMM -> Output;
+  GateConv  -> Output;
+  Attention -> Output;
+
+  // Monitors
+  Params -> ScaleGuard   [style=dashed];
+  Params -> Debounce     [style=dashed];
+  Params -> EmitGate     [style=dashed];
+  Params -> Refractory   [style=dashed];
+  Stats  -> Params       [style=dashed, label="adapt/update"];
+
+  // Visual separators
+  {rank=same; Debounce; EmitGate; Refractory;}
+  {rank=same; PulseGEMM; GateConv; Attention;}
+}

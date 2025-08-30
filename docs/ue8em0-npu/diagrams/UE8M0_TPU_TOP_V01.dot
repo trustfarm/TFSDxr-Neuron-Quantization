@@ -1,0 +1,59 @@
+digraph UE8M0_TPU_TOP_V01 {
+  label="UE8M0-TPU SoC Top v0.1"; labelloc="t"; fontsize=18;
+  rankdir=TB; splines=ortho; nodesep=0.9; ranksep=1.2; fontname="Helvetica";
+  node[shape=box,style="rounded,filled",fillcolor="#EAF3FF",color="#2C6EBB",penwidth=1.4,fontname="Helvetica"];
+  edge[color="#333333",arrowsize=0.8,penwidth=1.2];
+
+  subgraph cluster_host {
+    label="Host/Runtime"; color="#FFCCCC"; style="rounded,filled";
+    pcie[label="PCIe/CXL"];
+    ucode[label="uCode Scheduler"];
+    dma[label="DMA Engines"];
+  }
+
+  subgraph cluster_mem {
+    label="External Memory"; color="#FFDAB9"; style="rounded,filled";
+    dram[label="HBM3 / LPDDR5X"];
+    mc[label="Memory Controller"];
+  }
+
+  subgraph cluster_spm {
+    label="On-chip Scratchpad (Multi-bank)"; color="#DFF7E7"; style="rounded,filled";
+    spm[label="SPM Banks + Prefetch/Double-Buffer"];
+  }
+
+  subgraph cluster_codec {
+    label="UE8M0 Codec Cluster"; color="#E6E6E6"; style="rounded,filled";
+    enc[label="Encoder (FP32→FP8+E)"];
+    dec[label="Decoder (FP8+E→FP16/FP32)"];
+    scale[label="Scale Controller (E sync/update)"];
+    stats[label="Calib Stats"];
+  }
+
+  subgraph cluster_tiles {
+    label="Tensor Core Tiles"; color="#CCE5FF"; style="rounded,filled";
+    tile0[label="Tile[0]\nSystolic Array"];
+    tile1[label="Tile[1]\nSystolic Array"];
+    tileN[label="Tile[N]\nSystolic Array"];
+  }
+
+  subgraph cluster_post {
+    label="Post/Activations"; color="#E6F2FF"; style="rounded,filled";
+    act[label="ReLU/SiLU/GELU approx"];
+    norm[label="Layer/Group Norm"];
+  }
+
+  // Wiring
+  pcie -> dma -> spm;
+  mc -> spm [label="LD/ST"];
+  dram -> mc;
+  ucode -> {dma enc dec scale} [style=dashed];
+
+  spm -> {tile0 tile1 tileN};
+  scale -> {tile0 tile1 tileN} [label="E headers",style=dashed];
+  {tile0 tile1 tileN} -> post [lhead=cluster_post,label="outputs"];
+  post -> spm;
+
+  enc -> spm [label="packed FP8+E"];
+  spm -> dec [label="for debug/host readback",style=dashed];
+}

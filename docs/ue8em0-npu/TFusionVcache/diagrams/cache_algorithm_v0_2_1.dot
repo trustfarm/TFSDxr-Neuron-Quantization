@@ -1,0 +1,33 @@
+digraph CACHE_ALGO_V021 {
+  label="Front-side Shared Cache (64MB) — Algorithm View"; labelloc="t"; fontsize=18;
+  rankdir=TB; splines=ortho; nodesep=0.8; ranksep=1.0; fontname="Helvetica";
+  node[shape=box,style="rounded,filled",fillcolor="#EAF3FF",color="#2C6EBB"];
+
+  subgraph cluster_fe { label="Front-End"; color="#FFF0B3";
+    fe[label="Classifier / Arbiter\n(op-type, stride/size, reuse-hint, stream-ID)"];
+    mux[label="Policy Multiplexor\n(KV / Tensor / Bypass)"];
+    fe -> mux;
+  }
+
+  subgraph cluster_part { label="Dynamic Partition Controller"; color="#FFDAB9";
+    tele[label="Telemetry\n(Hk,Ht,MPk,MPt,BQk,BQt)"];
+    ctrl[label="Partition Logic\n(hysteresis, MB step=4MB)"];
+    tele -> ctrl -> apply[label="apply_waymask(KV_MB,T_MB)"];
+  }
+
+  subgraph cluster_cache { label="Shared Cache Banks (64MB physical)"; color="#DFF7E7";
+    kvp[label="KV-policy\n(SRRIP+pin, small line, UE-pack)"];
+    tcp[label="Tensor-policy\n(streaming+prefetch, big block, bypass)"];
+    banks[label="16 Banks × 4MB + Tag\n(16-way, policy-bit)"];
+    kvp -> banks; tcp -> banks;
+  }
+
+  front[label="Requests\n(KV / Tensor)"]; sink[label="Responses"];
+
+  front -> fe;
+  mux -> {kvp tcp};
+  banks -> sink;
+
+  ctrl -> kvp [label="quota/waymask"];
+  ctrl -> tcp [label="quota/waymask"];
+}

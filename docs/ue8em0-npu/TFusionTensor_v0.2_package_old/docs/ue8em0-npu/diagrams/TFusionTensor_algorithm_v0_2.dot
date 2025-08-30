@@ -1,0 +1,31 @@
+digraph TFUSIONTENSOR_ALGO {
+  label="TFusionTensor v0.2 — Algorithm View";
+  labelloc="t"; fontsize=18;
+  rankdir=TB; splines=ortho; nodesep=0.9; ranksep=1.0; fontname="Helvetica";
+  node[shape=box,style="rounded,filled",fillcolor="#EAF3FF",color="#2C6EBB"];
+
+  subgraph cluster_fe { label="Front-End"; color="#FFF0B3";
+    fe[label="Classifier / Scheduler
+(op-type, stride/size, reuse-hint, stream-ID)"];
+    mux[label="Routing
+(KV / Tensor → policy paths)"];
+    fe -> mux;
+  }
+  subgraph cluster_compute { label="Compute Tiles"; color="#CCE5FF";
+    tiles[label="Tiles 128×128 (systolic)
+E-adder → MantissaUnit → Shifter → ACC"];
+  }
+  subgraph cluster_spm { label="Scratchpad (SPM)"; color="#DFF7E7";
+    spm[label="SPM Banks
+(ping-pong, crossbar)"];
+  }
+  subgraph cluster_cache { label="TFusionVcache (front-side)"; color="#FFF0B3";
+    fvc[label="64MB physical; logical KV/Tensor
+Dynamic MB reallocation"];
+  }
+  subgraph cluster_mem { label="External Memory"; color="#FFDAB9";
+    dram[label="DDR/HBM"]; host[label="Host DMA/Queue"];
+  }
+  {host dram} -> fvc -> spm -> tiles;
+  mux -> tiles [style=dashed,label="policy-aware scheduling"];
+}

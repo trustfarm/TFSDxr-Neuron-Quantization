@@ -1,0 +1,15 @@
+digraph CACHE_CENTRIC_SYS_TFV {
+  label="TFusionVcache — System Connectivity & Flow";
+  labelloc="t"; fontsize=18;
+  rankdir=TB; splines=ortho; nodesep=0.9; ranksep=1.0; fontname="Helvetica";
+  node[shape=box,style="rounded,filled",fillcolor="#EAF3FF",color="#2C6EBB"];
+
+  cache[label="TFusionVcache 64MB
+(Partitioned KV/Tensor)"];
+  host[label="Host DMA/Queue"]; dram[label="DDR/HBM"]; 
+  spm[label="SPM Banks"]; tiles[label="Tensor Core Tiles"]; codec[label="Codec (Scale/Calib/Decoder)"];
+  {host dram} -> cache;
+  cache -> spm -> tiles;
+  tiles -> cache [style=dashed,label="refetch (rare)"];
+  tiles -> codec -> spm [style=dashed,label="scale/calib"];
+}

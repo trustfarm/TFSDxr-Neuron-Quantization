@@ -1,0 +1,19 @@
+digraph CACHE_BLOCK_ALGO_TFV {
+  label="TFusionVcache — Block Internals (Algorithm)";
+  labelloc="t"; fontsize=18;
+  rankdir=TB; splines=ortho; nodesep=0.9; ranksep=1.0; fontname="Helvetica";
+  node[shape=box,style="rounded,filled",fillcolor="#EAF3FF",color="#2C6EBB"];
+
+  front[label="Front-End Classifier"];
+  kv_mshr[label="MSHR-K"]; t_mshr[label="MSHR-T"];
+  kv_pf[label="KV Prefetcher"]; t_pf[label="Tensor Prefetcher"];
+  repl[label="Replacement Engines
+(KV: SRRIP+pin, Tensor: NMR/Bypass)"];
+  tags[label="Tags + Policy bits"];
+  data[label="Banked Data Arrays 64MB"];
+  comp[label="UE Pack/Unpack"];
+  ecc[label="ECC"]; out[label="SPM/Req Sink"];
+  front -> {kv_mshr t_mshr};
+  {kv_mshr t_mshr} -> {kv_pf t_pf};
+  {kv_pf t_pf} -> repl -> tags -> data -> comp -> ecc -> out;
+}

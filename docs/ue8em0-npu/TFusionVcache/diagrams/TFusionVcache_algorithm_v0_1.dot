@@ -1,0 +1,37 @@
+digraph CACHE_ALGO_TFV {
+  label="TFusionVcache — Algorithm View";
+  labelloc="t"; fontsize=18;
+  rankdir=TB; splines=ortho; nodesep=0.9; ranksep=1.0; fontname="Helvetica";
+  node[shape=box,style="rounded,filled",fillcolor="#EAF3FF",color="#2C6EBB"];
+
+  subgraph cluster_fe { label="Front-End"; color="#FFF0B3";
+    fe[label="Classifier / Arbiter
+(op-type, stride/size, reuse-hint, stream-ID)"];
+    mux[label="Policy Multiplexor
+(KV / Tensor / Bypass)"];
+    fe -> mux;
+  }
+  subgraph cluster_part { label="Dynamic Partition Controller"; color="#FFDAB9";
+    tele[label="Telemetry
+(Hk,Ht,MPk,MPt,BQk,BQt)"];
+    ctrl[label="Partition Logic
+(hysteresis, MB step=4MB)"];
+    tele -> ctrl -> apply[label="apply_waymask(KV_MB,T_MB)"];
+  }
+  subgraph cluster_cache { label="TFusionVcache (64MB physical)"; color="#DFF7E7";
+    kvp[label="KV-policy
+(SRRIP+pin, small line, UE-pack)"];
+    tcp[label="Tensor-policy
+(streaming+prefetch, big block, bypass)"];
+    banks[label="16 Banks × 4MB + Tag
+(16-way, policy-bit)"];
+    kvp -> banks; tcp -> banks;
+  }
+  front[label="Requests
+(KV / Tensor)"]; sink[label="Responses"];
+  front -> fe;
+  mux -> {kvp tcp};
+  banks -> sink;
+  ctrl -> kvp [label="quota/waymask"];
+  ctrl -> tcp [label="quota/waymask"];
+}

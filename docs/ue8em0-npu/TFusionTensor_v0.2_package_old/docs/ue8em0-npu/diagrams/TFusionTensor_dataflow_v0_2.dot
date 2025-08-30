@@ -1,0 +1,20 @@
+digraph TFUSIONTENSOR_DFLOW {
+  label="TFusionTensor v0.2 — Data Flow View";
+  labelloc="t"; fontsize=18;
+  rankdir=TB; splines=ortho; nodesep=0.9; ranksep=1.0; fontname="Helvetica";
+  node[shape=box,style="rounded,filled",fillcolor="#EAF3FF",color="#2C6EBB"];
+
+  subgraph cluster_mem { label="Sources"; color="#FFCCCC";
+    host[label="Host DMA/Queue"]; dram[label="DDR/HBM"];
+  }
+  subgraph cluster_cache { label="TFusionVcache"; color="#FFF0B3";
+    fvc[label="64MB (KV/Tensor partitions)"];
+  }
+  subgraph cluster_spm { label="Scratchpad"; color="#DFF7E7";
+    spm[label="SPM Banks (ping-pong)"];
+  }
+  subgraph cluster_tiles { label="Compute"; color="#CCE5FF";
+    conv[label="Conv: weight-stationary"]; gemm[label="GEMM: output-stationary"];
+  }
+  {host dram} -> fvc -> spm -> {conv gemm};
+}
