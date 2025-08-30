@@ -1,5 +1,5 @@
 digraph NEURON_MEM_ARCH_V02 {
-  label = "UE4T Neuron Memory Architecture v0.2";
+  label = "TFSD4(UE4T) Neuron Memory Architecture v0.2";
   labelloc = "t";
   fontsize=18;
 

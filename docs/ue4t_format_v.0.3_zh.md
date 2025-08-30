@@ -1,15 +1,16 @@
+
+
+# TFSD4(UE4T)：4位 事件/差分 量化 — v0.3
+
 **免责声明**：本文件的韩文 (KO) 版本为原始版本。  
 如在翻译中出现问题或歧义，请参考韩文版本。
 
 ---
 
-
-# UE4T：4位 事件/差分 量化 — v0.3
-
 [KO](ue4t_format_v.0.3.md) | [EN](ue4t_format_v.0.3_en.md) | [ZH](ue4t_format_v.0.3_zh.md)
 
 
-UE4T 保持 UE8M0 的理念（**差分、事件驱动、2^E 缩放、EMA(b)**），并将 **令牌用 4 位（nibble）** 表达。  
+**TFSD4(UE4T)** 保持 TFSD8 的理念（**差分、事件驱动、2^E 缩放、EMA(b)**），并将 **令牌用 4 位（nibble）** 表达。  
 目标是通过 **无需乘法器（移位）**、**小型 LUT** 与 **ΣΔ 累加**，高效传递微小变化。
 
 ---
@@ -127,14 +128,14 @@ update:
 
 ---
 
-## 7) 📎 Related Works : Trustfarm AI UE4T NeuroMorphic Chip Architecture
-- [TFAI NMC Architecture](ue4t_nmc/TFAI_NMC_Architecture.md)
+## 7) 📎 Related Works : TFusion TFSD4(UE4T) NeuroMorphic Chip Architecture
+- [TFusion NMC Architecture](ue4t_nmc/TFAI_NMC_Architecture.md)
 
 ---
 
 ## 7) 后续验证（TODO）
 
-1. 应用于 LLM（UE8M0/UE4T 量化 → 困惑度/准确率 vs 效率）
+1. 应用于 LLM（TFSD8/TFSD4(UE4T) 量化 → 困惑度/准确率 vs 效率）
 
 2. 基于 FPGA 的仿真（周期级资源/功耗）
 
@@ -144,7 +145,8 @@ update:
 
 ---
 
-## Changelog v0.3 a1
+## Changelog v0.3 a2
+- Change CODE name to TFSD4,TFSD8
 - Adds TFAI NMC architecture
 - 基于 v0.2 的整合
 - 修复错别字与格式

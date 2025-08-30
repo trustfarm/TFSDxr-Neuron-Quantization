@@ -1,14 +1,13 @@
+# TFSD4 (UE4T): 4-bit Event/Differential Quantization — v0.31
+
 **Disclaimer** : 본 문서는 한국어(KO) 버전이 원본이며, 번역 과정에서 발생할 수 있는 문제나 모호한 부분은 한국어 버전을 참조하시기 바랍니다.
 
 ---
 
-
-# UE4T: 4-bit Event/Differential Quantization — v0.3
-
 [KO](ue4t_format_v.0.3.md) | [EN](ue4t_format_v.0.3_en.md) | [ZH](ue4t_format_v.0.3_zh.md)
 
 
-UE4T는 UE8M0의 철학(**차분·이벤트·2^E 스케일·EMA(b)**)을 유지하면서, **토큰을 4비트(니블)**로 표현하는 포맷입니다.  
+**TFSD4(UE4T)** 는 TFSD8 의 철학(**차분·이벤트·2^E 스케일·EMA(b)**)을 유지하면서, **토큰을 4비트(니블)**로 표현하는 포맷입니다.  
 목표는 **곱셈 없이(shift)**, **작은 LUT**와 **ΣΔ 누산**으로 미세 변화를 효율적으로 전달하는 것입니다.
 
 ---
@@ -127,18 +126,19 @@ update:
 
 ---
 
-## 7) 📎 관련 자료 : Trustfarm AI UE4T NeuroMorphic Chip Architecture
-- [TFAI NMC Architecture](ue4t_nmc/TFAI_NMC_Architecture.md)
+## 7) 📎 관련 자료 : TFusion TFSD4(UE4T) NeuroMorphic Chip Architecture
+- [TFusion NMC (NeuroMorphic Chip) Architecture](ue4t_nmc/TFAI_NMC_Architecture.md)
 
 ---
 ## 8) 향후 검증 (TODO)
-  1. LLM 적용 (UE8M0/UE4T quantization → perplexity/accuracy vs 효율)
+  1. LLM 적용 ( TFSD8/TFSD4(UE4T) quantization → perplexity/accuracy vs 효율)
   2. FPGA 기반 simulation (cycle-level 자원/전력)
   3. 학습 지원 아키텍처 (SCALE learnable, pseudo-gradient)
   4. YOLO/Whisper 등 대규모 시계열 데이터 검증 (mAP, WER, throughput)
 ---
 
-## Changelog v0.3 a1
+## Changelog v0.3 a2
+- Change CODE name to TFSD4
 - Adds TFAI NMC architecture
 - v0.2 기반 내용 정리
 - 오타/정렬/표식 개선

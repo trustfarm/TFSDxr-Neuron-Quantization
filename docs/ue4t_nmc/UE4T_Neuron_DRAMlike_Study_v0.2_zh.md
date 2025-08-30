@@ -1,15 +1,15 @@
+# TFSD4(UE4T) 神经元 DRAM-like 研究 v0.2
+
+
 **免责声明**：本文件的韩文 (KO) 版本为原始版本。  
 如在翻译中出现问题或歧义，请参考韩文版本。
 
 ---
 
-
-# UE4T 神经元 DRAM-like 研究 v0.2
-
-
 [KO](UE4T_Neuron_DRAMlike_Study_v0.2.md) | [EN](UE4T_Neuron_DRAMlike_Study_v0.2_en.md) | [ZH](UE4T_Neuron_DRAMlike_Study_v0.2_zh.md)
 
 
+---
 
 ## 1) 候选技术选项总结
 | 选项 | 位单元 | 密度 | 速度/能耗 | 保持/刷新 | 端口/扩展性 | 备注 |
@@ -27,7 +27,8 @@
 
 ## 2) 在神经元单元内部“放什么放在哪里”（存储层次）
 
-UE4T 神经元单元状态示例:
+TFSD4(UE4T) 神经元单元状态示例:
+
 - b (EMA 基准, 12–16b), E (尺度, 5–6b), r (ΣΔ 累加器, 16–24b)  
 - 最近 Token FIFO (若干条目×4b), 本地统计/计数器 (8–16b), 稀疏连接索引  
 
@@ -82,7 +83,7 @@ UE4T 神经元单元状态示例:
 - 轻量 ECC/Parity，根据 **Token 类 (QoS)** 执行行优先刷新  
 
 **时序**
-- UE4T Token 频率 (如几 MHz) >> 刷新周期 → 按此设计  
+- TFSD4(UE4T) Token 频率 (如几 MHz) >> 刷新周期 → 按此设计  
 - 在读-改-写路径中插入总线保持/单周期恢复 → 提高可靠性  
 
 ---
@@ -98,15 +99,15 @@ UE4T 神经元单元状态示例:
 ## 结论/建议
 
 **神经元单元内部核心状态 = 动态锁存 RF**，**Tile 共享大容量 = GC-eDRAM**:  
-- 面积/功耗最优 + 与 UE4T 的事件/低精度特性互补  
-- 利用 UE4T Token 时序进行认知刷新，额外开销最小  
+- 面积/功耗最优 + 与 TFSD4(UE4T) 的事件/低精度特性互补  
+- 利用 TFSD4(UE4T) Token 时序进行认知刷新，额外开销最小  
 - FPGA 使用 BRAM/LUTRAM 验证功能 → ASIC 时替换为 GC-eDRAM + 脉冲锁存
 
 ---
 
 ## 方块图
 
-![**UE4T 神经元内存架构 v0.2**](diagrams/neuron_mem_arch_v0.2.svg)
+![**TFSD4(UE4T) 神经元内存架构 v0.2**](diagrams/neuron_mem_arch_v0.2.svg)
 
 ---
 

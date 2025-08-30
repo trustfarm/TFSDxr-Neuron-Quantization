@@ -1,14 +1,12 @@
+# TFSD4(UE4T) Neuron DRAM-like Study v0.2
+
 **Disclaimer**: The Korean (KO) version of this document is the original reference. In case of any translation issues or ambiguities, please refer to the Korean version.
 
 ---
 
-
-# UE4T Neuron DRAM-like Study v0.2
-
-
 [KO](UE4T_Neuron_DRAMlike_Study_v0.2.md) | [EN](UE4T_Neuron_DRAMlike_Study_v0.2_en.md) | [ZH](UE4T_Neuron_DRAMlike_Study_v0.2_zh.md)
 
-
+---
 
 ## 1) Candidate technology option summary
 | Option | Bitcell | Density | Speed/Energy | Retention/Refresh | Port/Scalability | Note |
@@ -26,7 +24,7 @@ Latest papers show retention extended from several ms to hundreds s, operating a
 
 ## 2) What to put “where” inside neuron cell (memory hierarchy)
 
-Example of UE4T neuron cell states:
+Example of TFSD4(UE4T) neuron cell states:
 - b (EMA base, 12–16b), E (scale, 5–6b), r (ΣΔ accumulator, 16–24b)
 - Recent token FIFO (several entries × 4b), local statistics/counter (8–16b), sparse connection index
 
@@ -81,7 +79,7 @@ Summary: Cell-local state = dynamic latch, large capacity item = tile-shared GC-
 - Lightweight ECC/parity, Row priority refresh according to **token class (QoS)**
 
 **Timing**
-- UE4T token frequency (e.g., several MHz etc.) >> refresh cycle → design accordingly  
+- TFSD4(UE4T) token frequency (e.g., several MHz etc.) >> refresh cycle → design accordingly  
 - Insert bus hold/one cycle restore into read-modify-write path to increase reliability
 
 ---
@@ -97,15 +95,15 @@ Summary: Cell-local state = dynamic latch, large capacity item = tile-shared GC-
 ## Conclusion/Proposal
 
 **Core states inside neuron cell = dynamic latch RF**, **large capacity per-tile = GC-eDRAM**:  
-- Area/Power optimized + complementary with UE4T’s event/low precision characteristic  
-- Use UE4T token timing for awareness-driven refresh to minimize extra overhead  
+- Area/Power optimized + complementary with TFSD4(UE4T)’s event/low precision characteristic  
+- Use TFSD4(UE4T) token timing for awareness-driven refresh to minimize extra overhead  
 - In FPGA use BRAM/LUTRAM for functional verification → in ASIC replace with GC-eDRAM + pulsed latch
 
 ---
 
 ## Block Diagram
 
-![**UE4T Neuron Memory Architecture v0.2**](diagrams/neuron_mem_arch_v0.2.svg)
+![**TFSD4(UE4T) Neuron Memory Architecture v0.2**](diagrams/neuron_mem_arch_v0.2.svg)
 
 ---
 

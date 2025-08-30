@@ -1,14 +1,13 @@
+# TFSD4 (UE4T): 4-bit Event/Differential Quantization — v0.3
+
 **Disclaimer**: The Korean (KO) version of this document is the original reference. In case of any translation issues or ambiguities, please refer to the Korean version.
 
 ---
 
-
-# UE4T: 4-bit Event/Differential Quantization — v0.3
-
 [KO](ue4t_format_v.0.3.md) | [EN](ue4t_format_v.0.3_en.md) | [ZH](ue4t_format_v.0.3_zh.md)
 
 
-UE4T keeps the UE8M0 philosophy (**differential, event-driven, 2^E scaling, EMA(b)**) while expressing **tokens in 4 bits (nibble)**.  
+**TFSD4(UE4T)** keeps the TFSD8 philosophy (**differential, event-driven, 2^E scaling, EMA(b)**) while expressing **tokens in 4 bits (nibble)**.  
 The goal is to efficiently convey small changes **without multipliers (shift)**, using a **small LUT** and **ΣΔ accumulation**.
 
 ---
@@ -129,14 +128,14 @@ update:
 - BASE_TICK Resync Timeline → ![appendix_C_BASE_TICK_resync.svg](diagrams/appendix_C_BASE_TICK_resync.svg)
 
 ---
-## 7) 📎 Related Works : Trustfarm AI UE4T NeuroMorphic Chip Architecture
-- [TFAI NMC Architecture](ue4t_nmc/TFAI_NMC_Architecture.md)
+## 7) 📎 Related Works : TFusion AI TFSD4(UE4T) NeuroMorphic Chip Architecture
+- [TFusion TFSD4(UE4T) NMC Architecture](ue4t_nmc/TFAI_NMC_Architecture.md)
 
 ---
 
 ## 7) Future validation (TODO)
 
-1. Apply to LLMs (UE8M0/UE4T quantization → perplexity/accuracy vs efficiency)
+1. Apply to LLMs (TFSD8/TFSD4(UE4T) quantization → perplexity/accuracy vs efficiency)
 
 2. FPGA-based simulation (cycle-level resources/power)
 
@@ -146,7 +145,8 @@ update:
 
 ---
 
-## Changelog v0.3 a1
+## Changelog v0.3 a2
+- Change CODE name to TFSD4
 - Adds TFAI NMC architecture
 - Consolidated from v0.2
 - Typos/formatting fixed

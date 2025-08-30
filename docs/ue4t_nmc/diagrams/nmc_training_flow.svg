@@ -9,7 +9,7 @@
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 507.5)">
 <title>NMC_TRAIN</title>
 <polygon fill="white" stroke="none" points="-4,4 -4,-507.5 234.87,-507.5 234.87,4 -4,4"/>
-<text xml:space="preserve" text-anchor="middle" x="115.44" y="-486.2" font-family="Times New Roman,serif" font-size="14.00">UE4T Training Flow v0.1</text>
+<text xml:space="preserve" text-anchor="middle" x="115.44" y="-486.2" font-family="Times New Roman,serif" font-size="14.00">TFSD4(UE4T) Training Flow v0.1</text>
 <!-- sensor -->
 <g id="node1" class="node">
 <title>sensor</title>
@@ -20,8 +20,8 @@
 <!-- enc -->
 <g id="node2" class="node">
 <title>enc</title>
-<path fill="#cce5ff" stroke="black" d="M185.75,-402.5C185.75,-402.5 105.25,-402.5 105.25,-402.5 99.25,-402.5 93.25,-396.5 93.25,-390.5 93.25,-390.5 93.25,-378.5 93.25,-378.5 93.25,-372.5 99.25,-366.5 105.25,-366.5 105.25,-366.5 185.75,-366.5 185.75,-366.5 191.75,-366.5 197.75,-372.5 197.75,-378.5 197.75,-378.5 197.75,-390.5 197.75,-390.5 197.75,-396.5 191.75,-402.5 185.75,-402.5"/>
-<text xml:space="preserve" text-anchor="middle" x="145.5" y="-379.07" font-family="Helvetica,sans-Serif" font-size="14.00">UE4T Encoder</text>
+<path fill="#cce5ff" stroke="black" d="M189.88,-402.5C189.88,-402.5 101.12,-402.5 101.12,-402.5 95.12,-402.5 89.12,-396.5 89.12,-390.5 89.12,-390.5 89.12,-378.5 89.12,-378.5 89.12,-372.5 95.12,-366.5 101.12,-366.5 101.12,-366.5 189.88,-366.5 189.88,-366.5 195.88,-366.5 201.88,-372.5 201.88,-378.5 201.88,-378.5 201.88,-390.5 201.88,-390.5 201.88,-396.5 195.88,-402.5 189.88,-402.5"/>
+<text xml:space="preserve" text-anchor="middle" x="145.5" y="-379.07" font-family="Helvetica,sans-Serif" font-size="14.00">TFSD4 Encoder</text>
 </g>
 <!-- sensor&#45;&gt;enc -->
 <g id="edge1" class="edge">

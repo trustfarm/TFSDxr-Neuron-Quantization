@@ -1,5 +1,5 @@
 digraph NMC_QOS {
-  label = "UE4T Token → QoS Mapping v0.1";
+  label = "TFSD4(UE4T) Token → QoS Mapping v0.1";
   labelloc = "t";
 
   rankdir=TB;

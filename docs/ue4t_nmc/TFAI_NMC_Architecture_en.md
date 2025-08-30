@@ -1,21 +1,21 @@
+# TFAI NeuroMorphic Chip (NMC) Architecture
+
 **Disclaimer**: The Korean (KO) version of this document is the original reference. In case of any translation issues or ambiguities, please refer to the Korean version.
 
 ---
 
-
-# TFAI NeuroMorphic Chip (NMC) Architecture
-
 [KO](TFAI_NMC_Architecture.md) | [EN](TFAI_NMC_Architecture_en.md) | [ZH](TFAI_NMC_Architecture_zh.md)
 
 
-This document describes the external-facing architecture of the UE4T-based NeuroMorphic ASIC. UE4T is a 4-bit format that simultaneously supports **event-driven and spike intensity representation**, overcoming the limitations of conventional Spiking Neural Networks (SNNs) and Artificial Neural Networks (ANNs).
+This document describes the external-facing architecture of the TFSD4(UE4T)-based NeuroMorphic ASIC. TFSD4(UE4T) is a 4-bit format that simultaneously supports **event-driven and spike intensity representation**, overcoming the limitations of conventional Spiking Neural Networks (SNNs) and Artificial Neural Networks (ANNs).
 
 ---
 
-## 🔑 UE4T Differentiators
+## 🔑 TFSD4(UE4T) Differentiators
+
 1. **Spike Intensity** Representation
    - Conventional SNN: Represents only firing (0/1) and timing → Lacks precise numerical information.
-   - UE4T: Quantitatively conveys magnitude through `NORM_ESC + 4bit payload`.
+   - TFSD4(UE4T): Quantitatively conveys magnitude through `NORM_ESC + 4bit payload`.
    - Result: Enables Gradient Descent-based training.
 
 2. **Multiplier-less ALU (Shift-only)**
@@ -32,6 +32,8 @@ This document describes the external-facing architecture of the UE4T-based Neuro
    - Pipelined Binary Heap (PBH) Arbiter for token priority routing.
    - Token Class → QoS Mapping: `MIN/MAX > SCALE > NORM > ΣΔ > SILENT`.
    - The token class itself is directly tied to network priority.
+   - * Alternatives : Leftest Tree , MinHeap/MaxHeap , Balanced Tree DataStructure 
+
 
 ---
 
@@ -41,7 +43,7 @@ This document describes the external-facing architecture of the UE4T-based Neuro
 ![NMC Architecture](diagrams/nmc_architecture.svg)
 
  - **Sensor Front-End**: Time-series inputs such as camera (1080p@30fps), audio, and IMU.
- - **UE4T Encoder**: Converts input signals into a 4-bit token stream.
+ - **TFSD4(UE4T) Encoder**: Converts input signals into a 4-bit token stream.
  - **Neuron Cell Array**: 256 cells/tile, 32×32 NoC (8192 tiles, scalable to hundreds of thousands or millions of cells).
 
  - **Adaptive Tile Mapping**: Dynamically adjusts tile size based on ROI and sparsity → Optimizes CNN training.
@@ -55,14 +57,14 @@ This document describes the external-facing architecture of the UE4T-based Neuro
 
 ![NMC Training Flow](diagrams/nmc_training_flow.svg)
 
-1. Sensor input → UE4T Encoder → 4-bit token.
+1. Sensor input → TFSD4(UE4T) Encoder → 4-bit token.
 2. Forward Pass: Token → Neuron Cell Array.
 3. Host CPU + External Memory: Backpropagation & Weight Update.
 
 **Resource Requirements**
 - CNNs typically have a fixed kernel + uniform computation structure → Unnecessary computations occur outside the POI (Point Of Interest).
 - Recent video algorithms (e.g., Video Codec, Object Detection) apply **adaptive tiling techniques**, processing POI areas with small tiles and background with large tiles to maximize efficiency.
-- The UE4T NMC adopts the same principle: **flexible mapping of neuron cells and tiles**.
+- The TFSD4(UE4T) NMC adopts the same principle: **flexible mapping of neuron cells and tiles**.
 - Current design goal: Support adaptive tiling for **approximately 100,000 neuron cells**.
 - This enables real-time training optimization for CNNs without wasting resources.
 
@@ -72,7 +74,7 @@ This document describes the external-facing architecture of the UE4T-based Neuro
 
 ![NMC Inference Flow](diagrams/nmc_inference_flow.svg)
 
-1. Same input (1080p@30fps) → UE4T Encoder.
+1. Same input (1080p@30fps) → TFSD4(UE4T) Encoder.
 2. Forward-only Token Path → Neuron Cell Array.
 3. Minimal Host CPU intervention (fixed weights, no need for Δb/ΔE).
 4. Inference requires only about 1/10th of the resources compared to training.
@@ -110,11 +112,11 @@ Advantages:
 
  - A structural proposal to replace power-consuming SRAM with a DRAM-like dynamic latch in the existing Neuron Cell block.
  
- - [Detailed Description of **TFAI Neuron Cell Memory Hierarchy (v0.1)**](Neuron_Cell_Memory_en.md)
+ - [Detailed Description of **TFusion Neuron Cell Memory Hierarchy (v0.1)**](Neuron_Cell_Memory_en.md)
  - ![Neuron Cell Memory](diagrams/neuron_cell_memory.svg)
 
  - More Detailed Study of DRAM-like Memory in SoC is 
- - [UE4T TFAI NMC Neuron DRAMlike Study (v0.2)](UE4T_Neuron_DRAMlike_Study_v0.2_en.md)
+ - [TFSD4(UE4T) TFusion NMC Neuron DRAMlike Study (v0.2)](UE4T_Neuron_DRAMlike_Study_v0.2_en.md)
 
 ---
 

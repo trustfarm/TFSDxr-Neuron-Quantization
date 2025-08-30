@@ -1,15 +1,15 @@
+# TFSD4(UE4T) 뉴런 셀 내 DRAM-like 메모리 스터디 (v0.2)
+
 **Disclaimer** : 본 문서는 한국어(KO) 버전이 원본이며, 번역 과정에서 발생할 수 있는 문제나 모호한 부분은 한국어 버전을 참조하시기 바랍니다.
 
 ---
 
-# UE4T 뉴런 셀 내 DRAM-like 메모리 스터디 (v0.2)
-
-
 [KO](UE4T_Neuron_DRAMlike_Study_v0.2.md) | [EN](UE4T_Neuron_DRAMlike_Study_v0.2_en.md) | [ZH](UE4T_Neuron_DRAMlike_Study_v0.2_zh.md)
 
 
+---
 
-UE4T 기반 **뉴런 셀 내부 메모리**를 FPGA에서는 BRAM/분산 RAM으로 프로토타이핑하되, ASIC에서는 **동적 플립플롭/펄스드 래치 기반 RF**와 **GC-eDRAM**(Gain-Cell eDRAM) 등 **DRAM-like 저장소**로 전환하는 방향을 정리한다. 본 문서는 후보 기술, 배치 전략(무엇을 어디에 둘 것인가), 리프레시/신뢰성, 자원 감(면적·전력·타이밍), FPGA 연결, 권장 마이크로아키텍처, 리스크/완화안을 한 번에 제시한다.
+TFSD4(UE4T) 기반 **뉴런 셀 내부 메모리**를 FPGA에서는 BRAM/분산 RAM으로 프로토타이핑하되, ASIC에서는 **동적 플립플롭/펄스드 래치 기반 RF**와 **GC-eDRAM**(Gain-Cell eDRAM) 등 **DRAM-like 저장소**로 전환하는 방향을 정리한다. 본 문서는 후보 기술, 배치 전략(무엇을 어디에 둘 것인가), 리프레시/신뢰성, 자원 감(면적·전력·타이밍), FPGA 연결, 권장 마이크로아키텍처, 리스크/완화안을 한 번에 제시한다.
 
 ---
 
@@ -29,7 +29,8 @@ UE4T 기반 **뉴런 셀 내부 메모리**를 FPGA에서는 BRAM/분산 RAM으�
 
 ## 2) 뉴런 셀 안에서 “무엇을 어디에” 둘 것인가 (메모리 계층)
 
-### UE4T 뉴런 셀 상태 예시
+### TFSD4(UE4T) 뉴런 셀 상태 예시
+
 - `b`(EMA 베이스, 12–16b), `E`(스케일, 5–6b), `r`(ΣΔ 누산기, 16–24b)  
 - 최근 토큰 FIFO(수 엔트리 × 4b), 로컬 통계/카운터(8–16b), 스파스 연결용 인덱스
 
@@ -87,7 +88,7 @@ UE4T 기반 **뉴런 셀 내부 메모리**를 FPGA에서는 BRAM/분산 RAM으�
   - 경량 ECC/Parity, **토큰 클래스(QoS)**에 따라 **Row 우선 순환 리프레시**
 
 - **타이밍**  
-  - UE4T 토큰 주파수(예: 수 MHz 등) 대비 **리프레시 주기 ≫ 토큰 주기**가 되도록 설계  
+  - TFSD4(UE4T) 토큰 주파수(예: 수 MHz 등) 대비 **리프레시 주기 ≫ 토큰 주기**가 되도록 설계  
   - 읽기-변경-쓰기 경로에 **버스 홀드/원사이클 복원** 삽입 → 신뢰성↑
 
 ---
@@ -103,15 +104,15 @@ UE4T 기반 **뉴런 셀 내부 메모리**를 FPGA에서는 BRAM/분산 RAM으�
 ## 결론/제안
 
 - **뉴런 셀 내부 핵심 상태는 ‘동적 래치 RF’**, **타일 공유 큰 용량은 ‘GC-eDRAM’**:  
-  - 면적/전력 최적 + UE4T의 **이벤트·저정밀 특성과 상보적**  
-  - **UE4T 토큰 타이밍을 활용한 인지형 리프레시**로 추가 오버헤드 최소화  
+  - 면적/전력 최적 + TFSD4(UE4T)의 **이벤트·저정밀 특성과 상보적**  
+  - **TFSD4(UE4T) 토큰 타이밍을 활용한 인지형 리프레시**로 추가 오버헤드 최소화  
 - **FPGA**에서는 BRAM/LUTRAM으로 기능 확인 → **ASIC 전환 시 GC-eDRAM + pulsed-latch**로 치환
 
 ---
 
 ## 블록다이어그램
 
-![**UE4T Neuron Memory Architecture v0.2**](diagrams/neuron_mem_arch_v0.2.svg)
+![**TFSD4(UE4T) Neuron Memory Architecture v0.2**](diagrams/neuron_mem_arch_v0.2.svg)
 
 ---
 

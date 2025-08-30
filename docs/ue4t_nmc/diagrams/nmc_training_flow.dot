@@ -1,5 +1,5 @@
 digraph NMC_TRAIN {
-  label = "UE4T Training Flow v0.1";
+  label = "TFSD4(UE4T) Training Flow v0.1";
   labelloc = "t";
 
   rankdir=TB;
@@ -7,7 +7,7 @@ digraph NMC_TRAIN {
   edge [color="#333333", arrowsize=0.8];
 
   sensor [label="Sensor Input\n(Frames/Audio)", fillcolor="#FFD699"];
-  enc [label="UE4T Encoder", fillcolor="#CCE5FF"];
+  enc [label="TFSD4 Encoder", fillcolor="#CCE5FF"];
   forward [label="Forward Pass\nNeuron Cell Array", fillcolor="#E6FFCC"];
   adapt [label="Adaptive Tile Mapping\n(ROI-aware)", fillcolor="#D9EAD3"];
   host [label="Host CPU + Ext. Memory", fillcolor="#FFCCCC"];

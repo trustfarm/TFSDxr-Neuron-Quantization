@@ -9,7 +9,7 @@
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 402.5)">
 <title>NMC_ARCH</title>
 <polygon fill="white" stroke="none" points="-4,4 -4,-402.5 519.5,-402.5 519.5,4 -4,4"/>
-<text xml:space="preserve" text-anchor="middle" x="257.75" y="-381.2" font-family="Times New Roman,serif" font-size="14.00">UE4T NeuroSoC Architecture v0.1</text>
+<text xml:space="preserve" text-anchor="middle" x="257.75" y="-381.2" font-family="Times New Roman,serif" font-size="14.00">TFSD4(UE4T) NeuroSoC Architecture v0.1</text>
 <!-- sensor -->
 <g id="node1" class="node">
 <title>sensor</title>
@@ -21,7 +21,7 @@
 <g id="node2" class="node">
 <title>enc</title>
 <path fill="#cce5ff" stroke="black" d="M289.75,-297.5C289.75,-297.5 12,-297.5 12,-297.5 6,-297.5 0,-291.5 0,-285.5 0,-285.5 0,-270 0,-270 0,-264 6,-258 12,-258 12,-258 289.75,-258 289.75,-258 295.75,-258 301.75,-264 301.75,-270 301.75,-270 301.75,-285.5 301.75,-285.5 301.75,-291.5 295.75,-297.5 289.75,-297.5"/>
-<text xml:space="preserve" text-anchor="middle" x="150.88" y="-280.2" font-family="Helvetica,sans-Serif" font-size="14.00">UE4T Encoder</text>
+<text xml:space="preserve" text-anchor="middle" x="150.88" y="-280.2" font-family="Helvetica,sans-Serif" font-size="14.00">TFSD4 Encoder</text>
 <text xml:space="preserve" text-anchor="middle" x="150.88" y="-264.45" font-family="Helvetica,sans-Serif" font-size="14.00">(ΣΔ, NORM_ESC, SCALE, MAX/MIN, SILENT)</text>
 </g>
 <!-- sensor&#45;&gt;enc -->

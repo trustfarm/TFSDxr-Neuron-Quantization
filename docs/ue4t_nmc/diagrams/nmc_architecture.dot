@@ -1,5 +1,5 @@
 digraph NMC_ARCH {
-  label = "UE4T NeuroSoC Architecture v0.1";
+  label = "TFSD4(UE4T) NeuroSoC Architecture v0.1";
   labelloc = "t";
 
   rankdir=TB;
@@ -7,7 +7,7 @@ digraph NMC_ARCH {
   edge [color="#333333", arrowsize=0.8];
 
   sensor [label="Sensor Front-End\n(1080p@30fps, Audio, IMU)", fillcolor="#FFD699"];
-  enc [label="UE4T Encoder\n(ΣΔ, NORM_ESC, SCALE, MAX/MIN, SILENT)", fillcolor="#CCE5FF"];
+  enc [label="TFSD4 Encoder\n(ΣΔ, NORM_ESC, SCALE, MAX/MIN, SILENT)", fillcolor="#CCE5FF"];
   array [label="Neuron Cell Array\n(256 cell/tile, 32x32 NoC)", fillcolor="#E6FFCC"];
   adapt [label="Adaptive Tile Mapping\n(ROI/Sparsity-aware)", fillcolor="#D9EAD3"];
   arb [label="PBH Arbiter + Multi-Stage NoC", fillcolor="#FFF2CC"];
