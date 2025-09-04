@@ -37,7 +37,7 @@ but also represents the heritage of TrustFarm, the foundation of this project.
 
 ### TFSD16xr Quantization Algorithm updated.
 
-Refer Here --->  [**TFSD16xr Codec Progress**](docs/tfsd_quant/README.md)
+Refer Here --->  [**TFSD16xr Codec Progress**](docs/tfsd_quant/README_en.md)
 
 --- 
 

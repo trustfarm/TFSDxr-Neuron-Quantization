@@ -41,7 +41,7 @@
 
 ### TFSD16xr Quantization Algorithm updated.
 
-Refer Here --->  [**TFSD16xr Codec Progress**](docs/tfsd_quant/README.md)
+Refer Here --->  [**TFSD16xr Codec Progress**](docs/tfsd_quant/README_zh.md)
 
 --- 
 
