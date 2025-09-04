@@ -161,7 +161,9 @@ t, decimal, sign, expbits, mantissa, dexp, dmantisa    , delta[(t)-(t-1)]
 1. Floating Point 의 sign (부호) 를 제외하고, E5 또는 E8 로 확장하여 Delta 구현.
     - 이유는 앞의 부호가 바뀔때, 처리복잡도 예상.
     - 정규화를 기존 [-1.0, +1.0] 에서 [0 , 2.0] 으로 하였을때, Exponent 의 Bitmask distance를 integer 기반으로 계산및 Packing 하기가 용이할것으로 예상됨.
-2. C 언어로 구현하여, Bitstream packing 하여 보낼때, bits alignment 고려로인한 불필요한 padding bits 제거 가능. (현재, python 코드 특성상, 바이트단위로 되지 않을경우, alignment 에러 발생. 
+2. C 언어로 구현하여, 
+   - Bitstream packing 하여 보낼때, bits alignment 고려로인한 불필요한 padding bits 제거 가능. 
+   - (현재, python 코드 특성상, 바이트단위로 되지 않을경우, alignment 에러 발생)
 3. Kappa / Emit 방식을 적용하고, DPCM kernel 을 다시 검증 및 개선.
 4. TFSD 코덱을 Audio / Video 데이터처리 특화 Quantization 으로 사용할경우, 기존 Pre/Post Processing Filter 복합구현.
 
