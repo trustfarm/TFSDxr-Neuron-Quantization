@@ -33,7 +33,15 @@ It embodies the wisdom of analog ΣΔ, the adaptivity of temporal coding today, 
 > Furthermore, the letter "T" signifies not only Time / Temporal / Tensor,
 but also represents the heritage of TrustFarm, the foundation of this project.
 
----
+--- 
+
+### TFSD16xr Quantization Algorithm updated.
+
+Refer Here --->  [**TFSD16xr Codec Progress**](docs/tfsd_quant/README.md)
+
+--- 
+
+## TFSD8 Kappa/Emit Algorithm
 
 ![TFSD8_block_diagram](TFSD8_block_diagram.svg)
 

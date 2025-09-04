@@ -36,7 +36,16 @@
 > 또한 "T"는 Time / Temporal / Tensor라는 기술적 의미와 더불어,
 본 프로젝트의 뿌리인 TrustFarm을 상징하기도 합니다.
 
+---
+
+### TFSD16xr Quantization Algorithm updated.
+
+Refer Here --->  [**TFSD16xr Codec Progress**](docs/tfsd_quant/README.md)
+
+
 --- 
+
+## TFSD8 Kappa/Emit Algorithm
 
 ![TFSD8_block_diagram](TFSD8_block_diagram.svg)
 

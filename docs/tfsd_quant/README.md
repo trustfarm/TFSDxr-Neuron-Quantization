@@ -150,7 +150,7 @@ t, decimal, sign, expbits, mantissa, dexp, dmantisa    , delta[(t)-(t-1)]
 
 물론, Bitmask 기반의 operation 이 실제 decoder 로직도 매우 간단해지고, 향후, ASIC 친화적으로 알고리즘을 구현하기 싶고, **C**언어로 구현했을시, 시스템 리소스도 소모 되지 않는 장점이 있습니다.
 
-현재는, 부호가 변화할때, exponent 를 포함해서 KF (KeyFrame)을 다시 보내고, Mantissa 부분을 M5W1 (10bits mantissa 중, 상위5Bit 또는 하위5Bit를 packing 할여 보내는것으로 Evaluation 하였습니다.
+현재는, 부호가 변화할때, exponent 를 포함해서 KF (KeyFrame)을 다시 보내고, Mantissa 부분을 M5W1 (10bits mantissa 중, 상위5Bit 또는 하위5Bit를 packing) 하여 보내는것으로 Evaluation 하였습니다.
 
 ### Python Integer Mask based  Refrence Source code V0.3b
 
@@ -171,5 +171,3 @@ t, decimal, sign, expbits, mantissa, dexp, dmantisa    , delta[(t)-(t-1)]
 ## License
 Apache License 2.0 © 2025 TrustFarm  
 SPDX-License-Identifier: Apache-2.0
-
-
