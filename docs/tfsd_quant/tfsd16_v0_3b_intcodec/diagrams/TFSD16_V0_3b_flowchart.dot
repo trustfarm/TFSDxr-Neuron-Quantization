@@ -1,0 +1,74 @@
+# 
+digraph TFSD16_V0_3b_Flow {
+  graph [rankdir=TB, fontsize=26, labelloc="t", label="TFSD16 (TimeFeedback SigmaDelta) V03_B — Encoder Flow \n (Closed-loop: Δ_t = FP_e(t) − FP_d(t−1))"];
+  
+  node [shape=rectangle, fontsize=11];
+  node [fontname="Helvetica", fontsize=11];
+  edge [fontname="Helvetica", fontsize=9];
+
+  start [shape=circle, label="Start"];
+  init  [shape=box, label="Init t=0\n KF0: type=00 + 16b FP16\n prev = FP16_enc(0)\n prev_pos=0, l6_age=0, l6_accum=0\n t=1"];
+
+  loop [shape=diamond, label="t < N ?"];
+  zrchk [shape=diamond, label="ZeroRun?\n (FP16_enc(t) == prev)"];
+  zremit [shape=box, label="Emit ZR (type=11)\n Pad to nibble → 0xF → runlen(4b)\n (t += runlen)"];
+  kfper [shape=diamond, label="Periodic KF?\n(kf_period && t % kf_period == 0)"];
+  kfper_emit [shape=box, label="Emit KF (type=00 + 16b)\n prev=FP16_enc(t) \n prev_pos=0, l6_age=0, l6_accum=0 \n t++"];
+
+  sechk [shape=diamond, label="SE changed? \n (S,E of enc(t) vs prev)"];
+  seekf [shape=box, label="Emit KF (type=00 + 16b) \n prev=FP16_enc(t)\n prev_pos=0, l6_age=0, l6_accum=0\n t++"];
+
+  prep [shape=box, label="Prep patch stage:\n Md = mantissa(prev), M = mantissa(FP16_enc(t))\n cur_M=Md, cur_pos=prev_pos \n patches=[], touched_l6=false, w=0"];
+
+  wloop [shape=diamond, label="While (w < W) and (cur_M != M)"];
+  win [shape=box, label="Choose window by hb of (M⊕cur_M) \n pos = clamp(9−hb, 0..7), msb=9−pos \n Δ=pos−cur_pos → shift2/pos3"];
+  payload [shape=box, label="Build payload (M5+1): \n M5=[msb..msb−4] from target, B1=[msb−5] \n Apply to cur_M; if msb≤5 → touched_l6=true\n w++"];
+  eguard [shape=diamond, label="ε-guard OK?\n |FP16(cur)−FP16(target)| ≤ ε"];
+  wend [shape=box, label="Exit patch loop"];
+
+  l6acc [shape=box, label="If !touched_l6: l6_accum += |(M&0x3F)−(Md&0x3F)|\n else l6_accum=0; l6_age = (touched_l6?0:l6_age+1)"];
+  watchdog [shape=diamond, label="Watchdog KF? \n (l6_age ≥ L6_WATCH) or (l6_accum ≥ 64)"];
+  wdk_emit [shape=box, label="Emit KF (type=00 + 16b) \n prev=FP16_enc(t) \n prev_pos=0, l6_age=0, l6_accum=0 \n t++"];
+
+  # Optional RD switch
+  rdsw [shape=diamond, style="dashed", label="(Optional) RD switch \n patch_bits < KF_bits AND cur_M==M ?"];
+  emit_patch [shape=box, label="Emit Patch (type=01) \n pc=|patches|−1; for each patch: \n shift2(+pos3), payload(6b=M5+1) \n prev = join(S,E, cur_M); prev_pos=cur_pos \n t++"];
+  emit_kf [shape=box, label="Emit KF (type=00 + 16b) \n prev=FP16_enc(t) \n prev_pos=0 \n t++"];
+
+  end [shape=doublecircle, label="End"];
+
+  start -> init -> loop;
+  loop -> zrchk [label="yes"];
+  loop -> end [label="no"];
+
+  zrchk -> zremit [label="yes"];
+  zremit -> loop;
+  zrchk -> kfper [label="no"];
+
+  kfper -> kfper_emit [label="yes"];
+  kfper_emit -> loop;
+  kfper -> sechk [label="no"];
+
+  sechk -> seekf [label="yes"];
+  seekf -> loop;
+  sechk -> prep [label="no"];
+
+  prep -> wloop;
+  wloop -> win [label="yes"];
+  win -> payload -> eguard;
+  eguard -> wend [label="yes"];
+  eguard -> wloop [label="no"];
+
+  wloop -> wend [label="no"];
+
+  wend -> l6acc -> watchdog;
+  watchdog -> wdk_emit [label="yes"];
+  wdk_emit -> loop;
+
+  watchdog -> rdsw [label="no"];
+  rdsw -> emit_patch [style="dashed", label="yes"];
+  rdsw -> emit_kf    [style="dashed", label="no"];
+
+  emit_patch -> loop;
+  emit_kf -> loop;
+}
