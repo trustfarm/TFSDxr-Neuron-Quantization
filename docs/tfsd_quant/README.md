@@ -176,7 +176,7 @@ t, decimal, sign, expbits, mantissa, dexp, dmantisa    , delta[(t)-(t-1)]
 3. Kappa / Emit 방식을 적용하고, DPCM kernel 을 다시 검증 및 개선.
 4. TFSD 코덱을 Audio / Video 데이터처리 특화 Quantization 으로 사용할경우, 기존 Pre/Post Processing Filter 복합구현.
 
-  => 참고 : [references 디렉토리에, AI 연산시 audio_datapath.md][../references/audio_datapath.md]
+  => 참고 : [references 디렉토리에, AI 연산시 audio_datapath.md](../references/audio_datapath.md)
 
 
 ## License
